@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PhotoComponent } from './photo.component';
+import { PhotoComponent } from './photo/photo.component';
 
 
 

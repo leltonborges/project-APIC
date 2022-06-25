@@ -1,3 +1,7 @@
 <main class="container">
-  <app-photo urlImg="https://images.unsplash.com/photo-1653938245506-3203e63338b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fF9oYi1kbDRRLTRVfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" descriptionImg="Yogar"></app-photo>
+  <section class="row">
+    <app-photo *ngFor="let p of photos" class="col-md-6 col-xl-4"
+               [urlImg]="p.url"
+               [descriptionImg]="p.description"></app-photo>
+  </section>
 </main>
