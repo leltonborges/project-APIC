@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PhotoComponent } from './photo/photo.component';
 
 
-
 @NgModule({
     declarations: [
         PhotoComponent
@@ -12,7 +11,8 @@ import { PhotoComponent } from './photo/photo.component';
         PhotoComponent
     ],
     imports: [
-        CommonModule
+      CommonModule,
+
     ]
 })
 export class PhotoModule { }

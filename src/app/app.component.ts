@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Photos } from "./photo/photo";
+import { Observable } from "rxjs";
+import { PhotoService } from "./photo/photo/photo.service";
 
 @Component({
   selector: 'app-root',
@@ -6,48 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
-  title = 'PIC Project';
 
-  private _photos = [
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1575729089845-6524fb9516f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-      description: 'Yogara'
-    }
-  ]
+  private _photos$! : Observable<Photos>;
 
-  get photos() : ({ description : string, url : string })[] {
-    return this._photos;
+  constructor(
+    private photoService : PhotoService
+  ) {
+    this.photos$ = this.photoService.findPhotoToUser('flavio');
   }
 
-  set photos(value : ({ description : string, url : string })[]) {
-    this._photos = value;
+  get photos$() : Observable<Photos> {
+    return this._photos$;
+  }
+
+  set photos$(value : Observable<Photos>) {
+    this._photos$ = value;
   }
 }

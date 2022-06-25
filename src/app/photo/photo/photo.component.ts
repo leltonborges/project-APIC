@@ -6,15 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: [ './photo.component.scss' ]
 })
 export class PhotoComponent implements OnInit {
-  private _url = '';
-  private _description = 'posto de gasolina';
+  private _url ! : string;
+  private _description ! : string;
 
   constructor() {
   }
 
   ngOnInit() : void {
   }
-
 
   get url() : string {
     return this._url;
