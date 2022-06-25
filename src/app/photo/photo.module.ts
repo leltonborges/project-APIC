@@ -5,11 +5,14 @@ import { PhotoComponent } from './photo.component';
 
 
 @NgModule({
-  declarations: [
-    PhotoComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        PhotoComponent
+    ],
+    exports: [
+        PhotoComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class PhotoModule { }
