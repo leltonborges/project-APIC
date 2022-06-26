@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
-import { Photos } from "../photo";
-import { PhotoService } from "../photo/photo.service";
+import { Observable } from 'rxjs';
+import { Photos } from '../photo';
+import { PhotoService } from '../photo/photo.service';
 
 @Component({
   selector: 'app-photo-list',
   templateUrl: './photo-list.component.html',
-  styleUrls: ['./photo-list.component.scss']
+  styleUrls: [ './photo-list.component.scss' ]
 })
 export class PhotoListComponent implements OnInit {
 
