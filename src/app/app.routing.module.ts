@@ -11,6 +11,10 @@ const routes : Routes = [
   {
     path: 'add',
     component: PhotoFormComponent
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./errors/errors.module').then(m => m.ErrorsModule)
   }
 ];
 

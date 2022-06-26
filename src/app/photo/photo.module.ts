@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PhotoComponent } from './photo/photo.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,10 +12,12 @@ import { PhotoFormComponent } from './photo-form/photo-form.component';
     PhotoFormComponent
   ],
   exports: [
-    PhotoListComponent
+    PhotoListComponent,
+    RouterModule
   ],
   imports: [
     CommonModule,
+    RouterModule
   ]
 })
 export class PhotoModule { }
