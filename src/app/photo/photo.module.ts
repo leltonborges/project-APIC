@@ -5,16 +5,14 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 
 
 @NgModule({
-    declarations: [
-        PhotoComponent,
-        PhotoListComponent
-    ],
-    exports: [
-        PhotoComponent
-    ],
-    imports: [
-      CommonModule,
+  declarations: [
+    PhotoComponent,
+    PhotoListComponent
+  ],
+  exports: [],
+  imports: [
+    CommonModule,
 
-    ]
+  ]
 })
 export class PhotoModule { }
