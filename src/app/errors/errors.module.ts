@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrorsRoutingModule } from './errors.routing.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,6 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule,
     ErrorsRoutingModule
   ]
 })

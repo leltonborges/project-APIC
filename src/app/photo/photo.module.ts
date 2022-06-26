@@ -4,6 +4,7 @@ import { PhotoComponent } from './photo/photo.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { RouterModule } from '@angular/router';
+import { PhotoRoutingModule } from './photo.routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    PhotoRoutingModule
   ]
 })
 export class PhotoModule { }

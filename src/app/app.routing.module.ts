@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PhotoListComponent } from './photo/photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
 
 const routes : Routes = [
   {
-    path: 'list',
-    component: PhotoListComponent
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'photo'
+  },
+  {
+    path: 'photo',
+    loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
   },
   {
     path: 'add',
