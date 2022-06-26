@@ -17,4 +17,8 @@ export class PhotoService {
   findPhotoToUser(userName : string) : Observable<Photos> {
     return this.httpClient.get<Photos>(`${ environment.baseUrlAPI }/${ userName }/photos`);
   }
+
+  findPhotoAll() : Observable<Photos> {
+    return this.httpClient.get<Photos>(`${ environment.baseUrlAPI }/photos/all`);
+  }
 }

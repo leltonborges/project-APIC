@@ -1,14 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhotoListComponent } from './photo-list/photo-list.component';
+import { PhotoAllComponent } from './photo-all/photo-all.component';
 
 const routes : Routes = [
   {
-    path: '',
-    component: PhotoListComponent
+    path: 'photo',
+    // component: PhotoAllComponent
+    children: [
+      {
+        path: '',
+        component: PhotoAllComponent
+      },
+      {
+        path: ':userName',
+        component: PhotoListComponent
+      }
+    ]
   },
   {
-    path: ':userName',
+    path: '?userName=:aba',
     component: PhotoListComponent
   }
 ];

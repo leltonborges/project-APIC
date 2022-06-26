@@ -5,12 +5,14 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { RouterModule } from '@angular/router';
 import { PhotoRoutingModule } from './photo.routing.module';
+import { PhotoAllComponent } from './photo-all/photo-all.component';
 
 @NgModule({
   declarations: [
     PhotoComponent,
     PhotoListComponent,
-    PhotoFormComponent
+    PhotoFormComponent,
+    PhotoAllComponent
   ],
   exports: [
     PhotoListComponent,

@@ -4,17 +4,12 @@ import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
 
 const routes : Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'photo'
+    path: 'add',
+    component: PhotoFormComponent
   },
   {
     path: 'photo',
     loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
-  },
-  {
-    path: 'add',
-    component: PhotoFormComponent
   },
   {
     path: '**',
