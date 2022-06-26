@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Photos } from "./photo/photo";
 import { Observable } from "rxjs";
 import { PhotoService } from "./photo/photo/photo.service";
@@ -8,13 +8,16 @@ import { PhotoService } from "./photo/photo/photo.service";
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.scss' ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   private _photos$! : Observable<Photos>;
 
   constructor(
     private photoService : PhotoService
   ) {
+  }
+
+  ngOnInit() : void {
     this.photos$ = this.photoService.findPhotoToUser('flavio');
   }
 
