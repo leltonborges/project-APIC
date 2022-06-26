@@ -1,1 +1,7 @@
-<p>photo-list works!</p>
+<main class="container">
+  <section class="row" *ngIf="photos$ | async as photos">
+    <app-photo *ngFor="let p of photos" class="col-md-6 col-xl-4"
+               [urlImg]="p.url"
+               [descriptionImg]="p.description"></app-photo>
+  </section>
+</main>
