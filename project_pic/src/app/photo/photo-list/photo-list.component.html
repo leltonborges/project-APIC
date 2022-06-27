@@ -1,5 +1,13 @@
+<aside class="text-center mt-3- mb-3">
+  <form>
+    <input type="search" class="rounded"
+           placeholder="Search..." [(ngModel)]="filter"
+           name="search" id="search" autofocus>
+  </form>
+</aside>
 <section class="row" *ngIf="photos$ | async as photos">
-  <app-photo *ngFor="let p of photos" class="col-md-6 col-xl-4"
+  <app-photo *ngFor="let p of photos | filterByDescription: filter" class="col-md-6 col-xl-4"
              [urlImg]="p.url"
              [descriptionImg]="p.description"></app-photo>
 </section>
+

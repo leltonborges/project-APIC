@@ -13,6 +13,7 @@ export class PhotoListComponent implements OnInit {
 
   private _userName! : string;
   private _photos$! : Observable<Photos>;
+  private _filter! : string;
 
   constructor(
     private photoService : PhotoService,
@@ -39,5 +40,13 @@ export class PhotoListComponent implements OnInit {
 
   set userName(value : string) {
     this._userName = value;
+  }
+
+  get filter() : string {
+    return this._filter;
+  }
+
+  set filter(value : string) {
+    this._filter = value;
   }
 }

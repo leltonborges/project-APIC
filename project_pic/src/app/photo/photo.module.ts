@@ -6,13 +6,16 @@ import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { RouterModule } from '@angular/router';
 import { PhotoRoutingModule } from './photo.routing.module';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
+import { FormsModule } from '@angular/forms';
+import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe';
 
 @NgModule({
   declarations: [
     PhotoComponent,
     PhotoListComponent,
     PhotoFormComponent,
-    PhotoAllComponent
+    PhotoAllComponent,
+    FilterByDescriptionPipe
   ],
   exports: [
     PhotoListComponent,
@@ -20,7 +23,8 @@ import { PhotoAllComponent } from './photo-all/photo-all.component';
   ],
   imports: [
     CommonModule,
-    PhotoRoutingModule
+    PhotoRoutingModule,
+    FormsModule
   ]
 })
 export class PhotoModule { }
