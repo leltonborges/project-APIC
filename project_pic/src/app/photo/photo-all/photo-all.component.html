@@ -1,4 +1,5 @@
-<section class="row" *ngIf="photos$ | async as photos">
+<section class="row" *ngIf="photos">
+  <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
   <app-photo *ngFor="let p of photos" class="col-md-6 col-xl-4"
              [urlImg]="p.url"
              [descriptionImg]="p.description"></app-photo>
