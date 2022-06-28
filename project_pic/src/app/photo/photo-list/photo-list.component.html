@@ -1,7 +1,7 @@
 <aside class="text-center mt-3- mb-3">
   <form>
     <input type="search" class="rounded"
-           placeholder="Search..." [(ngModel)]="filter"
+           placeholder="Search..." #wordFilter (keyup)="debounce$.next(wordFilter.value)"
            name="search" id="search" autofocus>
   </form>
 </aside>

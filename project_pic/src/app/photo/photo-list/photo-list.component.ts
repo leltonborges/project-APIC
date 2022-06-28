@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Photos } from '../photo';
 import { ActivatedRoute } from '@angular/router';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-photo-list',
@@ -12,6 +13,7 @@ export class PhotoListComponent implements OnInit {
   private _userName! : string;
   private _photos! : Photos;
   private _filter! : string;
+  private _debounce$ : Subject<string> = new Subject<string>();
 
   constructor(
     private activatedRoute : ActivatedRoute
@@ -19,8 +21,11 @@ export class PhotoListComponent implements OnInit {
   }
 
   ngOnInit() : void {
-    this._photos = this.activatedRoute.snapshot.data['photosListResolve'];
+    this.debounce$
+      .pipe(debounceTime(300))
+      .subscribe(value => this.filter = value);
 
+    this._photos = this.activatedRoute.snapshot.data['photosListResolve'];
     //Outra forma
     // this.activatedRoute
     //   .data.subscribe(() =>
@@ -50,5 +55,13 @@ export class PhotoListComponent implements OnInit {
 
   set filter(value : string) {
     this._filter = value;
+  }
+
+  get debounce$() : Subject<string> {
+    return this._debounce$;
+  }
+
+  set debounce$(value : Subject<string>) {
+    this._debounce$ = value;
   }
 }
