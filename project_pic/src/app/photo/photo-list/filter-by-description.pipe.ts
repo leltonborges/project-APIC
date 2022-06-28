@@ -6,10 +6,10 @@ import { Photos } from '../photo';
 })
 export class FilterByDescriptionPipe implements PipeTransform {
 
-  transform(photos : Photos, filterDescription : string) : Photos {
+  transform(photos : Photos, filterDescription : string) : Photos{
     if(filterDescription)
       return photos
-        .filter(p => p.description.toLowerCase().includes(filterDescription.trim().toLowerCase()));
+        .filter(p => p.description.toLowerCase().includes(filterDescription.trim().toLowerCase())) || false;
 
     return photos;
   }
