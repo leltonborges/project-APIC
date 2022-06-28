@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Photos } from '../photo';
-import { PhotoService } from '../photo.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,26 +10,30 @@ import { ActivatedRoute } from '@angular/router';
 export class PhotoListComponent implements OnInit {
 
   private _userName! : string;
-  private _photos$! : Observable<Photos>;
+  private _photos! : Photos;
   private _filter! : string;
 
   constructor(
-    private photoService : PhotoService,
     private activatedRoute : ActivatedRoute
   ) {
   }
 
   ngOnInit() : void {
-    this.userName = this.activatedRoute.snapshot.params?.['userName'];
-    this.photos$ = this.photoService.findPhotoToUser(this.userName == 'photo' ? 'aba' : this._userName);
+    this._photos = this.activatedRoute.snapshot.data['photosListResolve'];
+
+    //Outra forma
+    // this.activatedRoute
+    //   .data.subscribe(() =>
+    //   this.photos = this.activatedRoute.snapshot.data['photosListResolve']
+    // );
   }
 
-  get photos$() : Observable<Photos> {
-    return this._photos$;
+  get photos() : Photos {
+    return this._photos;
   }
 
-  set photos$(value : Observable<Photos>) {
-    this._photos$ = value;
+  set photos(value : Photos) {
+    this._photos = value;
   }
 
   get userName() : string {

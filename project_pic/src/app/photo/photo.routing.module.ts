@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
+import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 
 const routes : Routes = [
   {
@@ -14,7 +15,10 @@ const routes : Routes = [
       },
       {
         path: ':userName',
-        component: PhotoListComponent
+        component: PhotoListComponent,
+        resolve: {
+          photosListResolve: PhotoListResolver
+        }
       }
     ]
   },

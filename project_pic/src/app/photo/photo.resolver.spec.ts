@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PhotoResolver } from './photo.resolver';
+import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 
 describe('PhotoResolver', () => {
-  let resolver: PhotoResolver;
+  let resolver: PhotoListResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(PhotoResolver);
+    resolver = TestBed.inject(PhotoListResolver);
   });
 
   it('should be created', () => {

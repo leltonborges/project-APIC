@@ -5,8 +5,8 @@
            name="search" id="search" autofocus>
   </form>
 </aside>
-<section class="row" *ngIf="photos$ | async as photos">
-    <h3 *ngIf="!(photos | filterByDescription: filter).length" class="text-center"> Sorry, no photos</h3>
+<section class="row" *ngIf="photos">
+    <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
     <app-photo *ngFor="let p of photos | filterByDescription: filter" class="col-md-6 col-xl-4"
                [urlImg]="p.url"
                [descriptionImg]="p.description"></app-photo>
