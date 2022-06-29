@@ -8,10 +8,11 @@ import { IconComponent } from './components/icon/icon.component';
     ButtonComponent,
     IconComponent
   ],
-  exports: [
-    ButtonComponent,
-    CommonModule
-  ],
+    exports: [
+        ButtonComponent,
+        CommonModule,
+        IconComponent
+    ],
   imports: [
     CommonModule
   ]

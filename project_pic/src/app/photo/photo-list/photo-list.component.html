@@ -6,11 +6,15 @@
            name="search" id="search" autofocus>
   </form>
 </aside>
-<section class="row" *ngIf="photos">
+<section class="row">
   <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
-  <app-photo *ngFor="let p of photos | filterByDescription: filter" class="col-sm-6 col-md-3 col-xl-2"
-             [urlImg]="p.url"
-             [descriptionImg]="p.description"></app-photo>
+  <figure class="col-sm-6 col-md-3 col-xl-4" *ngFor="let p of photos | filterByDescription: filter">
+    <app-photo [urlImg]="p.url"
+               [descriptionImg]="p.description"></app-photo>
+    <app-icon class="fa fa-heart-o me-3" [context]="p.likes"></app-icon>
+    <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
+  </figure>
+
   <footer>
     <app-button (click)="loadPage()" [hasMore]="hasMore"></app-button>
   </footer>
