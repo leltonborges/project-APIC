@@ -6,8 +6,11 @@
   </form>
 </aside>
 <section class="row" *ngIf="photos">
-    <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
-    <app-photo *ngFor="let p of photos | filterByDescription: filter" class="col-md-6 col-xl-4"
-               [urlImg]="p.url"
-               [descriptionImg]="p.description"></app-photo>
+  <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
+  <app-photo *ngFor="let p of photos | filterByDescription: filter" class="col-sm-6 col-md-3 col-xl-2"
+             [urlImg]="p.url"
+             [descriptionImg]="p.description"></app-photo>
+  <footer>
+    <app-button (click)="loadPage()" [hasMore]="hasMore"></app-button>
+  </footer>
 </section>

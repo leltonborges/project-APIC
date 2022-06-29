@@ -8,6 +8,7 @@ import { PhotoRoutingModule } from './photo.routing.module';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
 import { FormsModule } from '@angular/forms';
 import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe';
+import { CommonCustomModule } from '../common/common-custom.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe
     RouterModule
   ],
   imports: [
-    CommonModule,
     PhotoRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonCustomModule
   ]
 })
 export class PhotoModule { }
