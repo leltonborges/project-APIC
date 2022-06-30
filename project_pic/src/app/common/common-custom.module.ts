@@ -13,7 +13,8 @@ import { SearchComponent } from './components/search/search.component';
     exports: [
         ButtonComponent,
         CommonModule,
-        IconComponent
+        IconComponent,
+        SearchComponent
     ],
   imports: [
     CommonModule

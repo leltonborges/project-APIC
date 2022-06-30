@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Photos } from '../photo';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, Subject } from 'rxjs';
 import { PhotoService } from '../photo.service';
 
 @Component({
@@ -9,13 +8,12 @@ import { PhotoService } from '../photo.service';
   templateUrl: './photo-list.component.html',
   styleUrls: [ './photo-list.component.scss' ]
 })
-export class PhotoListComponent implements OnInit, OnDestroy {
+export class PhotoListComponent implements OnInit {
 
   private _userName! : string;
   private _photos! : Photos;
-  private _filter! : string;
+  private _filter : string = '';
 
-  private _debounce$ : Subject<string> = new Subject<string>();
   private _hasMore : boolean = false;
   private _currentPage : number = 1;
 
@@ -26,10 +24,6 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() : void {
-    this.debounce$
-      .pipe(debounceTime(300))
-      .subscribe(value => this.filter = value);
-
     this.userName = this.activatedRoute.snapshot.params?.['userName'];
 
     this._photos = this.activatedRoute.snapshot.data['photosListResolve'];
@@ -45,13 +39,14 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   loadPage() {
     this.photoService.findPhotoToUserWithPage(this.userName, ++this.currentPage)
       .subscribe(pts => {
+        this.filter = '';
         this.photos.push(...pts);
         if(!pts.length) this.hasMore = false;
       });
   }
 
-  ngOnDestroy() : void {
-    this.debounce$.unsubscribe();
+  getFilter(value : string) {
+    this.filter = value;
   }
 
   get photos() : Photos {
@@ -76,10 +71,6 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   set filter(value : string) {
     this._filter = value;
-  }
-
-  get debounce$() : Subject<string> {
-    return this._debounce$;
   }
 
   get hasMore() : boolean {

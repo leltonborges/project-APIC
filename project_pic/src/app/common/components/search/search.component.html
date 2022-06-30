@@ -1,1 +1,6 @@
-<p>search works!</p>
+<form>
+  <i aria-hidden="true" class="fa fa-search ms-md-3 me-2"></i>
+  <input type="search" class="rounded"
+         placeholder="Search..." #wordFilter (keyup)="debounce$.next(wordFilter.value)"
+         name="search" id="search" autofocus [value]="value">
+</form>
