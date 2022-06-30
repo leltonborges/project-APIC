@@ -11,8 +11,10 @@
   <figure class="col-sm-6 col-md-3 col-xl-4" *ngFor="let p of photos | filterByDescription: filter">
     <app-photo [urlImg]="p.url"
                [descriptionImg]="p.description"></app-photo>
-    <app-icon class="fa fa-heart-o me-3" [context]="p.likes"></app-icon>
-    <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
+    <div class="text-center">
+      <app-icon class="fa fa-heart-o me-3" [context]="p.likes"></app-icon>
+      <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
+    </div>
   </figure>
 
   <footer>
