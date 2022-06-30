@@ -8,6 +8,9 @@ import { DarkerOnHoverDirective } from './darker-on-hover/darker-on-hover.direct
   declarations: [
     DarkerOnHoverDirective
   ],
+  exports: [
+    DarkerOnHoverDirective
+  ],
   imports: [
     CommonModule
   ]

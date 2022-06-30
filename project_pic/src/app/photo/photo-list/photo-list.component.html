@@ -1,9 +1,10 @@
 <aside class="text-center mt-3- mb-3">
-  <app-search  (onFilter)="getFilter($event)" [value]="filter"></app-search>
+  <app-search (onFilter)="getFilter($event)" [value]="filter"></app-search>
 </aside>
 <section class="row">
   <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
-  <app-photo-card class="col-sm-6 col-md-3 col-xl-4"
+  <app-photo-card appDarkerOnHover
+                  class="col-sm-6 col-md-3 col-xl-4"
                   *ngFor="let p of photos | filterByDescription: filter"
                   [photo]="p"></app-photo-card>
   <footer>

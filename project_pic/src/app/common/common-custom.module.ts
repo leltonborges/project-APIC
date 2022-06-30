@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from './components/button/button.component';
-import { IconComponent } from './components/icon/icon.component';
-import { SearchComponent } from './components/search/search.component';
+import { ComponentsCommonModule } from './components/components-common.module';
 
 @NgModule({
-  declarations: [
-    ButtonComponent,
-    IconComponent,
-    SearchComponent
+  declarations: [],
+  exports: [
+    ComponentsCommonModule
   ],
-    exports: [
-        ButtonComponent,
-        CommonModule,
-        IconComponent,
-        SearchComponent
-    ],
   imports: [
-    CommonModule
+    CommonModule,
+    ComponentsCommonModule
   ]
 })
 export class CommonCustomModule {

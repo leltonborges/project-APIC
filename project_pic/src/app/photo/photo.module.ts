@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe';
 import { CommonCustomModule } from '../common/common-custom.module';
 import { PhotoCardComponent } from './photo-card/photo-card.component';
+import { DirectiveModule } from '../common/directive/directive.module';
 
 @NgModule({
   declarations: [
@@ -23,10 +24,11 @@ import { PhotoCardComponent } from './photo-card/photo-card.component';
     PhotoListComponent,
     RouterModule
   ],
-  imports: [
-    PhotoRoutingModule,
-    FormsModule,
-    CommonCustomModule
-  ]
+    imports: [
+        PhotoRoutingModule,
+        FormsModule,
+        CommonCustomModule,
+        DirectiveModule
+    ]
 })
 export class PhotoModule { }
