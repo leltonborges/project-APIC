@@ -4,6 +4,10 @@ import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
 
 const routes : Routes = [
   {
+    path: '',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
     path: 'add',
     component: PhotoFormComponent
   },
