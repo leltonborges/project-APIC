@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { IconComponent } from './icon/icon.component';
 import { SearchComponent } from './search/search.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     IconComponent,
-    SearchComponent
+    SearchComponent,
+    MessageComponent
   ],
   exports: [
     ButtonComponent,
