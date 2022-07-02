@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../core/service/auth/auth.service';
 import { Login } from '../../core/interface/user/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +15,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder : FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() : void {
@@ -39,8 +41,10 @@ export class SignInComponent implements OnInit {
     const login = this.userForm.getRawValue() as Login;
     this.authService.authenticate(login.userName, login.password)
       .subscribe({
-        next: console.log,
-        error: console.error
+        next: user => {
+          this.router.navigate(['photo', user.name])
+        },
+        error: () => alert('Usuário ou senha invalida')
       })
   }
 }
