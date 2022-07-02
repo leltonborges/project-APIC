@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -24,4 +24,11 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  isError(nameInput : string, nameError: string) : ValidationErrors | null | undefined {
+    return this.userForm.get(nameInput)?.errors?.[nameError];
+  }
+
+  isTouched(nameInput: string): Boolean | undefined{
+    return this.userForm.get(nameInput)?.touched;
+  }
 }

@@ -2,14 +2,18 @@
 
 <form class="form mt-4" [formGroup]="userForm">
   <div class="form-floating mb-3">
-    <input class="form-control" type="text" formControlName="userName"
-           name="username" id="username" placeholder="username">
+    <input class="form-control" type="text" formControlName="userName" autocomplete="username"
+           name="username" id="username" placeholder="username"/>
     <label for="username">Username</label>
+    <app-message *ngIf="isError('userName', 'required') && isTouched('userName')"
+                 msg="Usuário obrigátorio"></app-message>
   </div>
   <div class="form-floating mb-3">
     <input class="form-control" type="password" formControlName="password"
-           name="password" id="password" placeholder="password">
+           name="password" id="password" placeholder="password" autocomplete="new-password"/>
     <label for="password">Password</label>
+    <app-message *ngIf="isError('password', 'required') && isTouched('password')"
+                 msg="Senha obrigatória"></app-message>
   </div>
   <div class="d-grid gap-2">
     <button [disabled]="userForm.invalid" type="submit" class="btn btn-outline-primary">Login</button>
