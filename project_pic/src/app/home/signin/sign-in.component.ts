@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AuthService } from '../../core/service/auth/auth.service';
+import { Login } from '../../core/interface/user/login';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +13,8 @@ export class SignInComponent implements OnInit {
   userForm! : FormGroup;
 
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit() : void {
@@ -30,5 +33,9 @@ export class SignInComponent implements OnInit {
 
   isTouched(nameInput: string): Boolean | undefined{
     return this.userForm.get(nameInput)?.touched;
+  }
+
+  login(){
+    const login = this.userForm.getRawValue() as Login;
   }
 }
