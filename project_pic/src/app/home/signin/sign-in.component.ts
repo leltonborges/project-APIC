@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../core/service/auth/auth.service';
 import { Login } from '../../core/interface/user/login';
@@ -11,16 +11,18 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  userForm! : FormGroup;
+  private _userForm! : FormGroup;
+  @ViewChild('userName')
+  private _elementInput! : ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder : FormBuilder,
-    private authService: AuthService,
-    private router: Router
+    private authService : AuthService,
+    private router : Router
   ) { }
 
   ngOnInit() : void {
-    this.userForm = this.formBuilder.group({
+    this._userForm = this.formBuilder.group({
       userName: [ '', [
         Validators.required
       ] ],
@@ -29,22 +31,44 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  isError(nameInput : string, nameError: string) : ValidationErrors | null | undefined {
-    return this.userForm.get(nameInput)?.errors?.[nameError];
+  isError(nameInput : string, nameError : string) : ValidationErrors | null | undefined {
+    return this._userForm.get(nameInput)?.errors?.[nameError];
   }
 
-  isTouched(nameInput: string): Boolean | undefined{
-    return this.userForm.get(nameInput)?.touched;
+  isTouched(nameInput : string) : Boolean | undefined {
+    return this._userForm.get(nameInput)?.touched;
   }
 
-  login(){
-    const login = this.userForm.getRawValue() as Login;
+  login() {
+    const login = this._userForm.getRawValue() as Login;
     this.authService.authenticate(login.userName, login.password)
       .subscribe({
         next: user => {
-          this.router.navigate(['photo', user.name])
+          this.router.navigate([ 'photo', user.name ]);
         },
-        error: () => alert('Usuário ou senha invalida')
-      })
+        error: () => {
+          alert('Usuário ou senha invalida');
+          this.userForm.reset();
+          this.userForm.clearAsyncValidators();
+          this.userForm.clearValidators();
+          this.elementInput.nativeElement.focus();
+        }
+      });
+  }
+
+  get userForm() : FormGroup {
+    return this._userForm;
+  }
+
+  set userForm(value : FormGroup) {
+    this._userForm = value;
+  }
+
+  get elementInput() : ElementRef {
+    return this._elementInput;
+  }
+
+  set elementInput(value : ElementRef) {
+    this._elementInput = value;
   }
 }

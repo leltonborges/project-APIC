@@ -2,8 +2,9 @@
 
 <form class="form mt-4" [formGroup]="userForm" (submit)="login()">
   <div class="form-floating mb-3">
-    <input class="form-control" type="text" formControlName="userName" autocomplete="username"
-           name="username" id="username" placeholder="username"/>
+    <input class="form-control" type="text" #userName
+           formControlName="userName" autocomplete="username"
+           name="username" id="username" placeholder="username" autofocus/>
     <label for="username">Username</label>
     <app-message *ngIf="isError('userName', 'required') && isTouched('userName')"
                  msg="Usuário obrigátorio"></app-message>
