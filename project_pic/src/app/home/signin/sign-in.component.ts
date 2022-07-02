@@ -37,5 +37,10 @@ export class SignInComponent implements OnInit {
 
   login(){
     const login = this.userForm.getRawValue() as Login;
+    this.authService.authenticate(login.userName, login.password)
+      .subscribe({
+        next: console.log,
+        error: console.error
+      })
   }
 }
