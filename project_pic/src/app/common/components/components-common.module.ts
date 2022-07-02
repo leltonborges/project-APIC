@@ -16,7 +16,8 @@ import { MessageComponent } from './message/message.component';
     ButtonComponent,
     CommonModule,
     IconComponent,
-    SearchComponent ],
+    SearchComponent,
+    MessageComponent ],
   imports: [
     CommonModule
   ]
