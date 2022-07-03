@@ -5,10 +5,12 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsCommonModule } from '../common/components/components-common.module';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [
-    SignInComponent
+    SignInComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
