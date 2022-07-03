@@ -14,12 +14,14 @@ import { HeaderComponent } from './header/header.component';
     MessageComponent,
     HeaderComponent
   ],
-  exports: [
-    ButtonComponent,
-    CommonModule,
-    IconComponent,
-    SearchComponent,
-    MessageComponent ],
+    exports: [
+        ButtonComponent,
+        CommonModule,
+        IconComponent,
+        SearchComponent,
+        MessageComponent,
+        HeaderComponent
+    ],
   imports: [
     CommonModule
   ]
