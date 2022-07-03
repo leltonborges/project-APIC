@@ -4,6 +4,7 @@
     <div *ngIf="(user$ | hasUser) as name; else toLogin">
       <i class="fa fa-user-circle"></i>
       <a class="ms-2">{{name}}</a>
+      <a (click)="logout()">Logout</a>
     </div>
   </nav>
   <ng-template #toLogin>

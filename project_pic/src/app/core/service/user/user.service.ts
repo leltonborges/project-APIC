@@ -35,4 +35,9 @@ export class UserService {
   getUser() : Observable<User> {
     return this.userSubject.asObservable();
   }
+
+  logout() : void {
+    this.tokenService.deleteToken();
+    this.userSubject.next({ email: '', name: '' });
+  }
 }
