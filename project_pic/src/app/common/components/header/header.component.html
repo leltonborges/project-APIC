@@ -1,9 +1,9 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white me-4 ms-4">
     <a class="navbar-brand">Project APIC</a>
-    <div *ngIf="user$ | async as user ; else toLogin">
+    <div *ngIf="(user$ | hasUser) as name; else toLogin">
       <i class="fa fa-user-circle"></i>
-      <a class="ms-2">{{user.name}}</a>
+      <a class="ms-2">{{name}}</a>
     </div>
   </nav>
   <ng-template #toLogin>
