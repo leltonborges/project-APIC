@@ -5,11 +5,14 @@ import { HasUserPipe } from './has-user/has-user.pipe';
 
 
 @NgModule({
-  declarations: [
-    HasUserPipe
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        HasUserPipe
+    ],
+    exports: [
+        HasUserPipe
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class PipeModule { }
