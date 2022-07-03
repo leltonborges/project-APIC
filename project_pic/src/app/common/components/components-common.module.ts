@@ -5,6 +5,7 @@ import { IconComponent } from './icon/icon.component';
 import { SearchComponent } from './search/search.component';
 import { MessageComponent } from './message/message.component';
 import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
         HeaderComponent
     ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class ComponentsCommonModule {
