@@ -3,8 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { User } from '../../interface/user/user';
-import { TokenService } from '../token/token.service';
 import { Token } from '../../interface/auth-token/token';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(
     private httpClient : HttpClient,
-    private tokenService : TokenService
+    private userService: UserService
   ) { }
 
   authenticate(userName : string, password : string) : Observable<HttpResponse<User>> {
@@ -32,7 +32,7 @@ export class AuthService {
             userName: user.name,
             lastViewedMoment: new Date().getTime()
           };
-          this.tokenService.saveToken(token);
+          this.userService.setToken(token);
         })
       );
   }

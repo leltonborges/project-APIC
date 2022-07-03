@@ -10,8 +10,8 @@ export class TokenService {
 
   constructor() { }
 
-  getToken() : string {
-    return localStorage.getItem(KEY_TOKEN_API) ?? '';
+  getToken() : string | null {
+    return localStorage.getItem(KEY_TOKEN_API);
   }
 
   saveToken(token : Token) : void {
