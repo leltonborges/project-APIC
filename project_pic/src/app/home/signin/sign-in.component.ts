@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
     this.authService.authenticate(login.userName, login.password)
       .subscribe({
         next: user => {
-          this.router.navigate([ 'photo', user.name ]);
+          this.router.navigate([ 'photo', user.body?.name ]);
         },
         error: () => {
           alert('Usuário ou senha invalida');
