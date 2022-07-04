@@ -4,6 +4,7 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
 import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
+import { UserGuard } from '../core/guard/user/user.guard';
 
 const routes : Routes = [
   {
@@ -22,7 +23,8 @@ const routes : Routes = [
         component: PhotoListComponent,
         resolve: {
           photosListResolve: PhotoListResolver
-        }
+        },
+        canActivate: [ UserGuard ]
       }
     ]
   },
