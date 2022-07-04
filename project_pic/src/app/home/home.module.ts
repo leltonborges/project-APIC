@@ -6,13 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsCommonModule } from '../common/components/components-common.module';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { SingupComponent } from './singup/singup.component';
+import { SignupComponent } from './singup/signup.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     HomeComponent,
-    SingupComponent
+    SignupComponent
   ],
   imports: [
     CommonModule,

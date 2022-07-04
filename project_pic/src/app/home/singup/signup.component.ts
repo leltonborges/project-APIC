@@ -5,10 +5,10 @@ import { FormInputValidator } from '../../core/interface/form/validator/form-inp
 
 @Component({
   selector: 'app-singup',
-  templateUrl: './singup.component.html',
-  styleUrls: [ './singup.component.scss' ]
+  templateUrl: './signup.component.html',
+  styleUrls: [ './signup.component.scss' ]
 })
-export class SingupComponent implements OnInit, FormInputControl {
+export class SignupComponent implements OnInit, FormInputControl {
   private _formSingup! : FormGroup;
 
   constructor(
