@@ -1,16 +1,19 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../core/service/auth/auth.service';
 import { Login } from '../../core/interface/user/login';
-import { Router } from '@angular/router';
 import { PlatformDetectorService } from '../../core/platform/platform-detector.service';
+import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
+import { FormInputControl } from '../../core/interface/form/validator/form-input-control';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './sign-in.component.html',
   styleUrls: [ './sign-in.component.scss' ]
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, FormInputControl {
 
   private _userForm! : FormGroup;
   @ViewChild('userName')
@@ -20,7 +23,8 @@ export class SignInComponent implements OnInit {
     private formBuilder : FormBuilder,
     private authService : AuthService,
     private router : Router,
-    private platformService : PlatformDetectorService
+    private platformService : PlatformDetectorService,
+    private formInputValidator : FormInputValidator
   ) { }
 
   ngOnInit() : void {
@@ -33,12 +37,17 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  isError(nameInput : string, nameError : string) : ValidationErrors | null | undefined {
-    return this._userForm.get(nameInput)?.errors?.[nameError];
+  getInput(nameInput : string) : AbstractControl | null {
+    return this.formInputValidator.getInput(this.userForm, nameInput);
   }
 
-  isTouched(nameInput : string) : Boolean | undefined {
-    return this._userForm.get(nameInput)?.touched;
+  isError(nameInput : string, nameError : string) : ValidationErrors | undefined | null {
+    return this.formInputValidator.isError(this._userForm, nameInput, nameError);
+
+  }
+
+  isTouched(nameInput : string) : boolean | undefined | null {
+    return this.formInputValidator.isTouched(this._userForm, nameInput);
   }
 
   login() {
