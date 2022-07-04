@@ -11,6 +11,7 @@ import jwtDecode from 'jwt-decode';
 export class UserService {
 
   private userSubject = new BehaviorSubject<User>({ email: '', name: '' });
+  private username! : string;
 
   constructor(
     private tokenService : TokenService
@@ -23,6 +24,7 @@ export class UserService {
     if(token) {
       const auth = JSON.parse(token) as Token;
       const user = jwtDecode(auth.token) as User;
+      this.username = user.name;
       this.userSubject.next(user);
     }
   }
@@ -39,5 +41,13 @@ export class UserService {
   logout() : void {
     this.tokenService.deleteToken();
     this.userSubject.next({ email: '', name: '' });
+  }
+
+  isLogged() : boolean {
+    return this.tokenService.hasToken();
+  }
+
+  getUserName() : string {
+    return this.username;
   }
 }
