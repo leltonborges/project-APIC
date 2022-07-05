@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { FormInputControl } from '../../core/interface/form/validator/form-input-control';
 import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
+import { lowerCaseValidator } from '../../common/validator/form/lower-case.validator';
 
 @Component({
   selector: 'app-singup',
@@ -27,7 +28,7 @@ export class SignupComponent implements OnInit, FormInputControl {
         [
           Validators.required,
           Validators.minLength(5),
-          Validators.pattern(/^[a-z].*/)
+          lowerCaseValidator(/^[a-z].*/)
         ] ],
       email: [ '',
         [

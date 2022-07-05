@@ -19,7 +19,7 @@
                  msg="User name is required"></app-message>
     <app-message *ngIf="isError('userName', 'minlength') && isTouched('userName')"
                  msg="Size min 5"></app-message>
-    <app-message *ngIf="isError('userName', 'pattern') && isTouched('userName')"
+    <app-message *ngIf="isError('userName', 'lowercase') && isTouched('userName')"
                  msg="Start with a letter"></app-message>
   </div>
   <div class="form-floating mb-3">
