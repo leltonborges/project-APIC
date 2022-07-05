@@ -5,28 +5,47 @@
            placeholder="Full name" formControlName="fullName"
            autocomplete="fullName" autofocus>
     <label for="fullName">Full name</label>
-    <app-message></app-message>
+    <app-message *ngIf="isError('fullName', 'required') && isTouched('fullName')"
+                 msg="Full name required"></app-message>
+    <app-message *ngIf="isError('fullName', 'minlength') && isTouched('fullName')"
+                 msg="Size min 10"></app-message>
   </div>
   <div class="form-floating mb-3">
     <input type="text" class="form-control"
            id="username" formControlName="userName"
            placeholder="username" autocomplete="username">
     <label for="username">Username</label>
+    <app-message *ngIf="isError('userName', 'required') && isTouched('userName')"
+                 msg="User name is required"></app-message>
+    <app-message *ngIf="isError('userName', 'minlength') && isTouched('userName')"
+                 msg="Size min 5"></app-message>
+    <app-message *ngIf="isError('userName', 'pattern') && isTouched('userName')"
+                 msg="Start with a letter"></app-message>
   </div>
   <div class="form-floating mb-3">
     <input type="email" class="form-control"
            id="floatingInput" formControlName="email"
            placeholder="name@example.com" autocomplete="email">
     <label for="floatingInput">Email address</label>
+    <app-message *ngIf="isError('email', 'required') && isTouched('email')"
+                 msg="Email is required"></app-message>
+    <app-message *ngIf="isError('email', 'email') && isTouched('email')"
+                 msg="Invalid email"></app-message>
   </div>
   <div class="form-floating">
     <input type="password" class="form-control"
            id="floatingPassword" formControlName="password"
            placeholder="Password" autocomplete="password">
     <label for="floatingPassword">Password</label>
+    <app-message *ngIf="isError('password', 'required') && isTouched('password')"
+                 msg="Password is required"></app-message>
+    <app-message *ngIf="isError('password', 'minlength') && isTouched('password')"
+                 msg="Size min 8"></app-message>
   </div>
   <div class="d-grid gap-2 mx-auto mt-5">
-    <button class="btn btn-outline-primary" type="button">Button</button>
+    <button [disabled]="formSingup.invalid"
+            class="btn btn-outline-primary" type="button">Button
+    </button>
     <p>Alredy a user? <a [routerLink]="['']">Sign In</a></p>
   </div>
 </form>

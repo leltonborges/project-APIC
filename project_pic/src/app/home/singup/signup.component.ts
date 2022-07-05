@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit, FormInputControl {
         [
           Validators.required,
           Validators.minLength(5),
-          Validators.pattern(/^[a-z]./)
+          Validators.pattern(/^[a-z].*/)
         ] ],
       email: [ '',
         [
@@ -36,17 +36,14 @@ export class SignupComponent implements OnInit, FormInputControl {
         ] ],
       password: [ '',
         [
-          Validators.required
+          Validators.required,
+          Validators.minLength(8)
         ] ]
     });
   }
 
   get formSingup() : FormGroup {
     return this._formSingup;
-  }
-
-  set formSingup(value : FormGroup) {
-    this._formSingup = value;
   }
 
   getInput(nameInput : string) : AbstractControl | null {
