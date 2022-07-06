@@ -1,5 +1,5 @@
 <h3 class="text-center">Registe-se</h3>
-<form class="mt-3" [formGroup]="formSingup">
+<form class="mt-3" [formGroup]="formSingup" (submit)="singUp()">
   <div class="form-floating mb-3">
     <input type="text" class="form-control" id="fullName"
            placeholder="Full name" formControlName="fullName"
@@ -17,10 +17,13 @@
     <label for="username">Username</label>
     <app-message *ngIf="isError('userName', 'required') && isTouched('userName')"
                  msg="User name is required"></app-message>
-    <app-message *ngIf="isError('userName', 'minlength') && isTouched('userName')"
+    <app-message *ngIf="isError('userName', 'isExitsUser')"
+                 msg="Usuário já existe"></app-message>
+    <app-message *ngIf="isError('userName', 'minlength')"
                  msg="Size min 5"></app-message>
     <app-message *ngIf="isError('userName', 'lowercase') && isTouched('userName')"
-                 msg="Start with a letter"></app-message>
+                 msg="Start with a letter">
+    </app-message>
   </div>
   <div class="form-floating mb-3">
     <input type="email" class="form-control"
@@ -43,7 +46,7 @@
                  msg="Size min 8"></app-message>
   </div>
   <div class="d-grid gap-2 mx-auto mt-5">
-    <button [disabled]="formSingup.invalid"
+    <button [disabled]="formSingup.invalid || formSingup.pending"
             class="btn btn-outline-primary" type="button">Button
     </button>
     <p>Alredy a user? <a [routerLink]="['']">Sign In</a></p>

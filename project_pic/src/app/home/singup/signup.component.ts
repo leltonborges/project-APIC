@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { FormInputControl } from '../../core/interface/form/validator/form-input-control';
 import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
 import { lowerCaseValidator } from '../../common/validator/form/lower-case.validator';
+import { UserNotTakenValidatorService } from '../user-not-taken.validator.service';
 
 @Component({
   selector: 'app-singup',
@@ -14,7 +15,8 @@ export class SignupComponent implements OnInit, FormInputControl {
 
   constructor(
     private formBuilder : FormBuilder,
-    private formInputValidator : FormInputValidator
+    private formInputValidator : FormInputValidator,
+    private userNotTakenValidator : UserNotTakenValidatorService
   ) { }
 
   ngOnInit() : void {
@@ -29,6 +31,9 @@ export class SignupComponent implements OnInit, FormInputControl {
           Validators.required,
           Validators.minLength(5),
           lowerCaseValidator(/^[a-z].*/)
+        ],
+        [
+          this.userNotTakenValidator.isExistsUser()
         ] ],
       email: [ '',
         [
@@ -41,6 +46,10 @@ export class SignupComponent implements OnInit, FormInputControl {
           Validators.minLength(8)
         ] ]
     });
+  }
+
+  singUp(){
+    const newUser = this.formSingup.getRawValue()
   }
 
   get formSingup() : FormGroup {
