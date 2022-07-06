@@ -4,6 +4,9 @@ import { FormInputControl } from '../../core/interface/form/validator/form-input
 import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
 import { lowerCaseValidator } from '../../common/validator/form/lower-case.validator';
 import { UserNotTakenValidatorService } from '../user-not-taken.validator.service';
+import { Signup } from '../../core/interface/user/signup';
+import { HomeService } from '../home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-singup',
@@ -16,7 +19,9 @@ export class SignupComponent implements OnInit, FormInputControl {
   constructor(
     private formBuilder : FormBuilder,
     private formInputValidator : FormInputValidator,
-    private userNotTakenValidator : UserNotTakenValidatorService
+    private userNotTakenValidator : UserNotTakenValidatorService,
+    private homeService : HomeService,
+    private router : Router
   ) { }
 
   ngOnInit() : void {
@@ -48,8 +53,13 @@ export class SignupComponent implements OnInit, FormInputControl {
     });
   }
 
-  singUp(){
-    const newUser = this.formSingup.getRawValue()
+  singUp() {
+    const newUser = this.formSingup.getRawValue() as Signup;
+    this.homeService.signUp(newUser)
+      .subscribe({
+        next: () => this.router.navigate([ '' ]),
+        error: console.log
+      });
   }
 
   get formSingup() : FormGroup {
