@@ -7,6 +7,7 @@ import { MessageComponent } from './message/message.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { PipeModule } from '../pipe/pipe.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PipeModule } from '../pipe/pipe.module';
     IconComponent,
     SearchComponent,
     MessageComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
     exports: [
         ButtonComponent,
