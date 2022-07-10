@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 import { CommonCustomModule } from './common/common-custom.module';
+import { InterceptorModule } from './core/interceptor/interceptor.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { CommonCustomModule } from './common/common-custom.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    InterceptorModule,
     CommonCustomModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
