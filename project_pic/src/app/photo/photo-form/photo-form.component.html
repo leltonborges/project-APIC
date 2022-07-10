@@ -1,29 +1,37 @@
 <section class="container">
-  <form>
+  <form [formGroup]="photoForm">
     <section class="row">
       <h3 class="text-center mb-5">Add new photo</h3>
       <div class="d-flex col-md-6 mb-3 flex-column justify-content-center align-items-center">
-        <label for="file">Image</label>
         <i class="fa fa-image fa-5x align-middle" (click)="inputFile.click()">
           <input #inputFile type="file" hidden name="file" id="file"
-                 accept="image/*" class="form-control">
+                 accept="image/*" class="form-control" formControlName="file">
         </i>
+        <app-message *ngIf="isError('file', 'required')"
+                     msg="Select one photo"></app-message>
       </div>
       <div class="col-md-6 form-floating mb-3">
-        <div>
+        <div class="mb-4">
           <label for="description">Photo description</label>
           <textarea name="description" id="description" class="form-control"
-                    cols="30" rows="10" placeholder="Photo description"></textarea>
+                    cols="30" rows="10" placeholder="Photo description"
+                    formControlName="description"></textarea>
+          <app-message *ngIf="isError('description', 'required')
+                              && isTouched('description')"
+                       msg="Description required"></app-message>
+          <app-message *ngIf="isError('description', 'minlength')
+                              && isTouched('description')"
+                       msg="Size min 5 caracteres"></app-message>
         </div>
         <div>
-          <input type="checkbox" name="comments" id="comments">
+          <input type="checkbox" name="comments" id="comments" formControlName="comments">
           <label class="ms-2 text-muted">Allow comments</label>
 
         </div>
       </div>
     </section>
     <section class="d-grid gap-2">
-      <button type="submit" class="btn btn-outline-primary">Upload</button>
+      <button type="submit" class="btn btn-outline-primary" [disabled]="photoForm.invalid">Upload</button>
       <button type="button" class="btn btn-outline-secondary">Cancel</button>
     </section>
   </form>

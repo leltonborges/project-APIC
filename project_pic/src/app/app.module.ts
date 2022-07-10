@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 import { CommonCustomModule } from './common/common-custom.module';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InterceptorModule } from './core/interceptor/interceptor.module';
     HttpClientModule,
     AppRoutingModule,
     InterceptorModule,
-    CommonCustomModule
+    CommonCustomModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

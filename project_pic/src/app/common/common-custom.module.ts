@@ -7,7 +7,7 @@ import { PipeModule } from './pipe/pipe.module';
   declarations: [],
   exports: [
     ComponentsCommonModule,
-    PipeModule
+    PipeModule,
   ],
   imports: [
     CommonModule,

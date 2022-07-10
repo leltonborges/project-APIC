@@ -4,7 +4,7 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { PhotoRoutingModule } from './photo.routing.module';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe';
 import { CommonCustomModule } from '../common/common-custom.module';
 import { PhotoCardComponent } from './photo-card/photo-card.component';
@@ -13,6 +13,7 @@ import { PhotoService } from './photo.service';
 import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
 import { ComponentsCommonModule } from '../common/components/components-common.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,14 +25,16 @@ import { ComponentsCommonModule } from '../common/components/components-common.m
     PhotoCardComponent
   ],
   exports: [
-    PhotoListComponent
+    PhotoListComponent,
+    ReactiveFormsModule
   ],
   imports: [
     PhotoRoutingModule,
-    FormsModule,
     CommonCustomModule,
     DirectiveModule,
-    ComponentsCommonModule
+    ComponentsCommonModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [
     PhotoService,
