@@ -1,1 +1,18 @@
-<p>footer works!</p>
+<footer class="mt-5" *ngIf="(user$ | async) as user">
+  <section class="fixed-bottom p-1">
+    <div class="container">
+      <div class="row text-center">
+        <aside class="col-6">
+          <a [routerLink]="['']">
+            <i class="fa fa-home fa-2x"></i>
+          </a>
+        </aside>
+        <aside class="col-6">
+          <a [routerLink]="['add']">
+            <i class="fa fa-plus-circle fa-2x"></i>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</footer>

@@ -12,6 +12,7 @@ import { DirectiveModule } from '../common/directive/directive.module';
 import { PhotoService } from './photo.service';
 import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
+import { ComponentsCommonModule } from '../common/components/components-common.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
     PhotoRoutingModule,
     FormsModule,
     CommonCustomModule,
-    DirectiveModule
+    DirectiveModule,
+    ComponentsCommonModule
   ],
   providers: [
     PhotoService,

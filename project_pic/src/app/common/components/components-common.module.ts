@@ -24,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
         IconComponent,
         SearchComponent,
         MessageComponent,
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
   imports: [
     CommonModule,
