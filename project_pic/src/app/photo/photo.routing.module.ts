@@ -8,8 +8,7 @@ import { UserGuard } from '../core/guard/user/user.guard';
 
 const routes : Routes = [
   {
-    path: 'photo',
-    // component: PhotoAllComponent
+    path: '',
     children: [
       {
         path: '',

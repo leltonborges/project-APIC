@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PhotoComponent } from './photo/photo.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
-import { RouterModule } from '@angular/router';
 import { PhotoRoutingModule } from './photo.routing.module';
 import { PhotoAllComponent } from './photo-all/photo-all.component';
 import { FormsModule } from '@angular/forms';
@@ -21,8 +20,7 @@ import { DirectiveModule } from '../common/directive/directive.module';
     PhotoCardComponent
   ],
   exports: [
-    PhotoListComponent,
-    RouterModule
+    PhotoListComponent
   ],
     imports: [
         PhotoRoutingModule,
