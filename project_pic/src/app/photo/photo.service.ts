@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Photos } from './photo';
 import { environment } from '../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PhotoService {
 
   constructor(

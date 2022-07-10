@@ -9,6 +9,9 @@ import { FilterByDescriptionPipe } from './photo-list/filter-by-description.pipe
 import { CommonCustomModule } from '../common/common-custom.module';
 import { PhotoCardComponent } from './photo-card/photo-card.component';
 import { DirectiveModule } from '../common/directive/directive.module';
+import { PhotoService } from './photo.service';
+import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
+import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
 
 @NgModule({
   declarations: [
@@ -22,11 +25,17 @@ import { DirectiveModule } from '../common/directive/directive.module';
   exports: [
     PhotoListComponent
   ],
-    imports: [
-        PhotoRoutingModule,
-        FormsModule,
-        CommonCustomModule,
-        DirectiveModule
-    ]
+  imports: [
+    PhotoRoutingModule,
+    FormsModule,
+    CommonCustomModule,
+    DirectiveModule
+  ],
+  providers: [
+    PhotoService,
+    PhotoListResolver,
+    PhotoAllResolver
+  ]
 })
-export class PhotoModule { }
+export class PhotoModule {
+}

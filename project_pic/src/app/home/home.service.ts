@@ -4,9 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Signup } from '../core/interface/user/signup';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HomeService {
 
   constructor(

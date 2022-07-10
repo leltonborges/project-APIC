@@ -7,6 +7,7 @@ import { ComponentsCommonModule } from '../common/components/components-common.m
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { SignupComponent } from './singup/signup.component';
+import { HomeService } from './home.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { SignupComponent } from './singup/signup.component';
     ReactiveFormsModule,
     ComponentsCommonModule,
     RouterModule
-  ]
+  ],
+  providers: [ HomeService ]
 })
-export class HomeModule { }
+export class HomeModule {
+}

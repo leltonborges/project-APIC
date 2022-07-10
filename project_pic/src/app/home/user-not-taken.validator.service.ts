@@ -3,9 +3,7 @@ import { HomeService } from './home.service';
 import { AbstractControl } from '@angular/forms';
 import { debounceTime, first, map, switchMap, tap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserNotTakenValidatorService {
 
   constructor(

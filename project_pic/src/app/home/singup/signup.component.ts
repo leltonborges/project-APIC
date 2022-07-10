@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-singup',
   templateUrl: './signup.component.html',
-  styleUrls: [ './signup.component.scss' ]
+  styleUrls: [ './signup.component.scss' ],
+  providers: [ UserNotTakenValidatorService ]
 })
 export class SignupComponent implements OnInit, FormInputControl {
   private _formSingup! : FormGroup;
