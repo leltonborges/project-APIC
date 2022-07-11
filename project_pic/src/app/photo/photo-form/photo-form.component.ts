@@ -11,6 +11,8 @@ import { FormInputControl } from '../../core/interface/form/validator/form-input
 export class PhotoFormComponent implements OnInit, FormInputControl {
 
   private _photoForm!: FormGroup;
+  private _fileImg!: File;
+  private _preview !: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +34,12 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
     });
   }
 
+  reset(): void{
+    this.preview = ''
+  }
 
-  get photoForm(): FormGroup{
-    return this._photoForm;
+  upload(){
+    console.log(this._photoForm.getRawValue());
   }
 
   getInput(nameInput: string): AbstractControl | null{
@@ -48,5 +53,33 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
 
   isTouched(nameInput: string): boolean | undefined | null{
     return this.formInputValidator.isTouched(this.photoForm, nameInput);
+  }
+
+  gravaArquivo(arquivo: any): void{
+    const [ file ] = arquivo?.files;
+    this.fileImg = file;
+    const reader = new FileReader();
+    reader.onload = (i: any) => this.preview = i.target.result;
+    reader.readAsDataURL(file);
+  }
+
+  get photoForm(): FormGroup{
+    return this._photoForm;
+  }
+
+  get fileImg(): File{
+    return this._fileImg;
+  }
+
+  set fileImg(value: File){
+    this._fileImg = value;
+  }
+
+  get preview(): string{
+    return this._preview;
+  }
+
+  set preview(value: string){
+    this._preview = value;
   }
 }

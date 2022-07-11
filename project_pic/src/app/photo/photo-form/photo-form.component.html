@@ -1,15 +1,26 @@
 <section class="container">
-  <form [formGroup]="photoForm">
+  <form [formGroup]="photoForm" (submit)="upload()">
     <section class="row">
       <h3 class="text-center mb-5">Add new photo</h3>
-      <div class="d-flex col-md-6 mb-3 flex-column justify-content-center align-items-center">
-        <i class="fa fa-image fa-5x align-middle" (click)="inputFile.click()">
-          <input #inputFile type="file" hidden name="file" id="file"
-                 accept="image/*" class="form-control" formControlName="file">
-        </i>
-        <app-message *ngIf="isError('file', 'required')"
-                     msg="Select one photo"></app-message>
-      </div>
+      <ng-template [ngIf]="preview" [ngIfElse]="inputImg">
+        <div class="d-flex col-md-6 mb-3 justify-content-center align-items-center flex-column">
+          <picture>
+            <img [src]="this.preview" alt="preview" class="rounded img-fluid">
+          </picture>
+          <a  class="btn btn-outline-danger btn-sm mt-2" (click)="reset()">change</a>
+        </div>
+      </ng-template>
+      <ng-template #inputImg>
+        <div class="d-flex col-md-6 mb-3 flex-column justify-content-center align-items-center">
+          <i class="fa fa-image fa-5x align-middle" (click)="inputFile.click()">
+            <input #inputFile type="file" hidden name="file" id="file"
+                   accept="image/*" (change)="gravaArquivo($event.target)"
+                   class="form-control" formControlName="file">
+          </i>
+          <app-message *ngIf="isError('file', 'required')"
+                       msg="Select one photo"></app-message>
+        </div>
+      </ng-template>
       <div class="col-md-6 form-floating mb-3">
         <div class="mb-4">
           <label for="description">Photo description</label>
@@ -26,12 +37,13 @@
         <div>
           <input type="checkbox" name="comments" id="comments" formControlName="comments">
           <label class="ms-2 text-muted">Allow comments</label>
-
         </div>
       </div>
+
     </section>
     <section class="d-grid gap-2">
       <button type="submit" class="btn btn-outline-primary" [disabled]="photoForm.invalid">Upload</button>
+
       <button type="button" class="btn btn-outline-secondary">Cancel</button>
     </section>
   </form>
