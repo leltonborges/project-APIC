@@ -45,9 +45,12 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
 
   upload(){
     let newPhoto = this._photoForm.getRawValue() as NewPhoto;
-    console.log(newPhoto);
-    this.photoService.upload(newPhoto.description, newPhoto.allowComments, newPhoto.file)
-      .subscribe(() => this.router.navigate([ '' ]));
+    newPhoto.file = this.fileImg;
+    this.photoService.upload(newPhoto.description, newPhoto.allowComments, this.fileImg)
+      .subscribe({
+        next: () => this.router.navigate([ '' ]),
+        error: err => console.error(err)
+      });
   }
 
   getInput(nameInput: string): AbstractControl | null{
@@ -65,6 +68,7 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
 
   gravaArquivo(arquivo: any): void{
     const [ file ] = arquivo?.files;
+    console.log(file);
     this.fileImg = file;
     const reader = new FileReader();
     reader.onload = (i: any) => this.preview = i.target.result;

@@ -26,18 +26,14 @@ export class PhotoService {
     return this.httpClient.get<Photos>(`${ environment.baseUrlAPI }/photos/all`);
   }
 
-  upload(description: string, allowComments: boolean, file: File){
+  upload(description: string, allowComments: boolean, file: File | string){
     const formData = new FormData();
     formData.append('description', description);
     formData.append('allowComments', allowComments ? 'true' : 'false');
     formData.append('imageFile', file);
 
+
     return this.httpClient.post(
-      `${ environment.baseUrlAPI }/photos/upload`,
-      formData,
-      {
-        observe: 'events',
-        reportProgress: true
-      });
+      `${ environment.baseUrlAPI }/photos/upload`, formData);
   }
 }
