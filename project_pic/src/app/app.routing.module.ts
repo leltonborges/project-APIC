@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
+import { RequireAutenticationGuard } from './core/guard/auth/require-autentication.guard';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -14,11 +15,12 @@ const routes : Routes = [
   },
   {
     path: 'add',
-    component: PhotoFormComponent
+    component: PhotoFormComponent,
+    canActivate: [ RequireAutenticationGuard ]
   },
   {
     path: 'photo',
-    loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
+    loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule),
   },
   {
     path: '**',
