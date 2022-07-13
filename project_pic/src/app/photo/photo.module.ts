@@ -15,6 +15,7 @@ import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
 import { ComponentsCommonModule } from '../common/components/components-common.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     PhotoFormComponent,
     PhotoAllComponent,
     FilterByDescriptionPipe,
-    PhotoCardComponent
+    PhotoCardComponent,
+    PhotoDetailsComponent
   ],
   exports: [
     PhotoListComponent,
