@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
 import { FormInputControl } from '../../core/interface/form/validator/form-input-control';
+import { PhotoService } from '../photo.service';
+import { NewPhoto } from '../../core/interface/photo/new-photo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-photo-form',
@@ -16,7 +19,9 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
 
   constructor(
     private formBuilder: FormBuilder,
-    private formInputValidator: FormInputValidator
+    private formInputValidator: FormInputValidator,
+    private photoService: PhotoService,
+    private router: Router
   ){ }
 
   ngOnInit(): void{
@@ -35,11 +40,14 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
   }
 
   reset(): void{
-    this.preview = ''
+    this.preview = '';
   }
 
   upload(){
-    console.log(this._photoForm.getRawValue());
+    let newPhoto = this._photoForm.getRawValue() as NewPhoto;
+    console.log(newPhoto);
+    this.photoService.upload(newPhoto.description, newPhoto.allowComments, newPhoto.file)
+      .subscribe(() => this.router.navigate([ '' ]));
   }
 
   getInput(nameInput: string): AbstractControl | null{

@@ -14,6 +14,7 @@ import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
 import { ComponentsCommonModule } from '../common/components/components-common.module';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
     DirectiveModule,
     ComponentsCommonModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
     PhotoService,
