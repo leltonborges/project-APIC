@@ -7,12 +7,12 @@
           <picture>
             <img [src]="this.preview" alt="preview" class="rounded img-fluid">
           </picture>
-          <a  class="btn btn-outline-danger btn-sm mt-2" (click)="reset()">change</a>
+          <a class="btn btn-outline-danger btn-sm mt-2" (click)="reset()">change</a>
         </div>
       </ng-template>
       <ng-template #inputImg>
         <div class="d-flex col-md-6 mb-3 flex-column justify-content-center align-items-center">
-          <i class="fa fa-image fa-5x align-middle" (click)="inputFile.click()">
+          <i appImmediateClick class="fa fa-image fa-5x align-middle" (click)="inputFile.click()">
             <input #inputFile type="file" hidden name="file" id="file"
                    accept="image/*" (change)="gravaArquivo($event.target)"
                    class="form-control" formControlName="file">
