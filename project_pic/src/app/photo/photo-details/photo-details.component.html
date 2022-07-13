@@ -1,1 +1,8 @@
-<p>photo-details works!</p>
+<app-photo-card *ngIf="photo$ | async as p ; else notFoundPhoto" [photo]="p"></app-photo-card>
+
+<ng-template #notFoundPhoto>
+  <div class="text-center">
+    <h2>Not found photo</h2>
+    <i class="fa fa-image fa-5x"></i>
+  </div>
+</ng-template>

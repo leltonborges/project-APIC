@@ -5,31 +5,27 @@ import { PhotoAllComponent } from './photo-all/photo-all.component';
 import { PhotoListResolver } from './photo-list/photo-list-resolver.service';
 import { PhotoAllResolver } from './photo-all/photo-all-resolver.service';
 import { UserGuard } from '../core/guard/user/user.guard';
+import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: PhotoAllComponent,
-        resolve: {
-          photosAllResolver: PhotoAllResolver
-        }
-      },
-      {
-        path: ':userName',
-        component: PhotoListComponent,
-        resolve: {
-          photosListResolve: PhotoListResolver
-        },
-        canActivate: [ UserGuard ]
-      }
-    ]
+    component: PhotoAllComponent,
+    resolve: {
+      photosAllResolver: PhotoAllResolver
+    }
   },
   {
-    path: '?userName=:aba',
-    component: PhotoListComponent
+    path: ':userName',
+    component: PhotoListComponent,
+    resolve: {
+      photosListResolve: PhotoListResolver
+    },
+    canActivate: [ UserGuard ]
+  },
+  {
+    path: 'find/:idPhoto',
+    component: PhotoDetailsComponent
   }
 ];
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Photos } from './photo';
+import { Photo, Photos } from './photo';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -35,5 +35,9 @@ export class PhotoService {
 
     return this.httpClient.post(
       `${ environment.baseUrlAPI }/photos/upload`, formData);
+  }
+
+  findPhotoById(idPhoto: number): Observable<Photo> | null{
+    return this.httpClient.get<Photo>(`${ environment.baseUrlAPI }/photos/${ idPhoto }`);
   }
 }
