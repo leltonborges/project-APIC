@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [ UserGuard ]
   },
   {
-    path: 'find/:idPhoto',
+    path: ':userName/:idPhoto',
     component: PhotoDetailsComponent
   }
 ];

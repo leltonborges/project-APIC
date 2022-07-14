@@ -21,6 +21,8 @@ export class PhotoDetailsComponent implements OnInit {
   ngOnInit(): void{
     const idPhoto = this.activatedRoute.snapshot.params['idPhoto'];
     this.photo$ = this.photoService.findPhotoById(idPhoto)
+    console.log("\n\n");
+    this.photoService.findCommentsByIdPhoto(idPhoto)
   }
 
 }

@@ -40,4 +40,9 @@ export class PhotoService {
   findPhotoById(idPhoto: number): Observable<Photo> | null{
     return this.httpClient.get<Photo>(`${ environment.baseUrlAPI }/photos/${ idPhoto }`);
   }
+
+  findCommentsByIdPhoto(idPhoto: number): void{
+    this.httpClient.get(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`)
+      .subscribe((e) => console.log(e));
+  }
 }
