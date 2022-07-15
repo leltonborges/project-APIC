@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { PipeModule } from '../pipe/pipe.module';
 import { FooterComponent } from './footer/footer.component';
 import { CommentsComponent } from './comments/comments.component';
+import { DirectiveModule } from '../directive/directive.module';
 
 @NgModule({
   declarations: [
@@ -20,20 +21,22 @@ import { CommentsComponent } from './comments/comments.component';
     FooterComponent,
     CommentsComponent
   ],
-    exports: [
-        ButtonComponent,
-        CommonModule,
-        IconComponent,
-        SearchComponent,
-        MessageComponent,
-        HeaderComponent,
-        FooterComponent
-    ],
-  imports: [
+  exports: [
+    ButtonComponent,
     CommonModule,
-    RouterModule,
-    PipeModule
-  ]
+    IconComponent,
+    SearchComponent,
+    MessageComponent,
+    HeaderComponent,
+    FooterComponent,
+    CommentsComponent
+  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        PipeModule,
+        DirectiveModule
+    ]
 })
 export class ComponentsCommonModule {
 }

@@ -1,9 +1,9 @@
-<section *ngIf="photo$ | async as p ; else notFoundPhoto"
-         class="row">
-  <aside class="col-md-8">
+<main *ngIf="photo$ | async as p ; else notFoundPhoto"
+      class="row">
+  <section class="col-md-8">
     <app-photo [urlImg]="p.url" [descriptionImg]="p.description"></app-photo>
-  </aside>
-  <aside class="col-md-4">
+  </section>
+  <section class="col-md-4">
     <p class="text-center"><span>Likes: {{p.likes}}</span> <span class="ms-5">Comments: {{p.comments}}</span></p>
     <div class="form-floating mb-1">
       <input type="text" name="comment" id="comment"
@@ -13,8 +13,17 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button type="button" class="btn btn-primary btn-sm">Comments</button>
     </div>
-  </aside>
-</section>
+    <article>
+      <app-comments appDarkerOnHover *ngFor="let comment of comments$ | async as comments"
+                    [comment]="comment"></app-comments>
+      <ng-template #noComments>
+        <div class="text-center">
+          <p>No comments</p>
+        </div>
+      </ng-template>
+    </article>
+  </section>
+</main>
 
 <ng-template #notFoundPhoto>
   <div class="text-center">

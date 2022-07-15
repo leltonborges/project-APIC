@@ -1,5 +1,7 @@
 export interface Comment {
-  comment: string,
-  createdAt: Date,
-  userId: number
+  text: string,
+  date: Date,
+  userName: string
 }
+
+export type Comments = Array<Comment>;

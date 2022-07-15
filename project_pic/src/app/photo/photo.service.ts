@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Photo, Photos } from './photo';
 import { environment } from '../../environments/environment';
+import { Comments } from '../core/interface/photo/comment';
 
 @Injectable()
 export class PhotoService {
@@ -41,8 +42,7 @@ export class PhotoService {
     return this.httpClient.get<Photo>(`${ environment.baseUrlAPI }/photos/${ idPhoto }`);
   }
 
-  findCommentsByIdPhoto(idPhoto: number): void{
-    this.httpClient.get(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`)
-      .subscribe((e) => console.log(e));
+  findCommentsByIdPhoto(idPhoto: number): Observable<Comments>{
+    return this.httpClient.get<Comments>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`);
   }
 }
