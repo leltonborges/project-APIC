@@ -14,7 +14,7 @@
       <button type="button" class="btn btn-primary btn-sm">Comments</button>
     </div>
     <article>
-      <app-comments appDarkerOnHover *ngFor="let comment of comments$ | async as comments"
+      <app-comments *ngFor="let comment of comments$ | async as comments"
                     [comment]="comment"></app-comments>
       <ng-template #noComments>
         <div class="text-center">

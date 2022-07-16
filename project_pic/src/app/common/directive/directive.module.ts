@@ -14,7 +14,8 @@ import { BoxHoverDirective } from './box-hover/box-hover.directive';
   ],
     exports: [
         DarkerOnHoverDirective,
-        ImmediateClickDirective
+        ImmediateClickDirective,
+        BoxHoverDirective
     ],
   imports: [
     CommonModule
