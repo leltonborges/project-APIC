@@ -46,12 +46,9 @@ export class PhotoService {
     return this.httpClient.get<Comments>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`);
   }
 
-  addCommentsByIdPhoto(idPhoto: number, commentText: string): Observable<HttpResponse<any>>{
-    return this.httpClient.post<boolean>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`,
-      { commentText },
-      {
-        reportProgress: true,
-        observe: 'response'
-      });
+  addCommentsByIdPhoto(idPhoto: number, commentText: string){
+    return this.httpClient.post(
+      `${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`,
+      { commentText });
   }
 }

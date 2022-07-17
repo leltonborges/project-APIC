@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
-import { Observable } from 'rxjs';
 import { Comments } from '../../core/interface/photo/comment';
 import { FormInputControl } from '../../core/interface/form/validator/form-input-control';
 import { FormInputValidator } from '../../core/interface/form/validator/form-input-validator';
+import { ModalComponent } from '../../common/components/modal/modal.component';
 
 @Component({
   selector: 'app-photo-details',
@@ -19,6 +20,8 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
   comments$!: Observable<Comments> | null;
   private _formComment!: FormGroup;
   private idPhoto!: number;
+
+  @ViewChild('modal') modal!: ModalComponent;
 
   constructor(
     private photoService: PhotoService,
@@ -38,7 +41,11 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
     });
     this.idPhoto = this.activatedRoute.snapshot.params['idPhoto'];
     this.photo$ = this.photoService.findPhotoById(this.idPhoto);
-    this.comments$ = this.photoService.findCommentsByIdPhoto(this.idPhoto);
+    this.comments$ = this.getFindCommentsByIdPhoto();
+  }
+
+  private getFindCommentsByIdPhoto(){
+    return this.photoService.findCommentsByIdPhoto(this.idPhoto);
   }
 
   get formComment(): FormGroup{
@@ -60,6 +67,18 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
 
   addComment(){
     const commentText = this.getInput('commentText')?.value;
-    this.photoService.addCommentsByIdPhoto(this.idPhoto, commentText);
+
+    this.photoService.addCommentsByIdPhoto(this.idPhoto, commentText)
+      .subscribe({
+        next: () => {
+          this.comments$ = this.getFindCommentsByIdPhoto();
+          this.formComment.setValue({ commentText: '' });
+          this.modal.open();
+        },
+        error: () => {
+          this.modal.message = 'Error adding comment';
+          this.modal.open();
+        }
+      });
   }
 }

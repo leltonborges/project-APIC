@@ -18,6 +18,7 @@
         </span>
       </div>
     </form>
+    <app-modal #modal msg="Comment successfully added" icon="fa fa-comments fa-5x"></app-modal>
     <section>
       <div *ngIf="(comments$ | async)?.length; else noComments ">
         <app-comments *ngFor="let comment of comments$ | async"

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
 import { RequireAutenticationGuard } from './core/guard/auth/require-autentication.guard';
+import { ModalComponent } from './common/components/modal/modal.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'photo',
     loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule),
+  },
+  {
+   path: 'temp',
+   component: ModalComponent
   },
   {
     path: '**',
