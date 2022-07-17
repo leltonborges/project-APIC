@@ -73,10 +73,12 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
         next: () => {
           this.comments$ = this.getFindCommentsByIdPhoto();
           this.formComment.setValue({ commentText: '' });
+          this.modal.message = 'Comment successfully added';
           this.modal.open();
         },
         error: () => {
           this.modal.message = 'Error adding comment';
+          this.formComment.setValue({ commentText: '' });
           this.modal.open();
         }
       });
