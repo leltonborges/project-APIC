@@ -23,16 +23,17 @@ import { ModalComponent } from './modal/modal.component';
     CommentsComponent,
     ModalComponent
   ],
-  exports: [
-    ButtonComponent,
-    CommonModule,
-    IconComponent,
-    SearchComponent,
-    MessageComponent,
-    HeaderComponent,
-    FooterComponent,
-    CommentsComponent
-  ],
+    exports: [
+        ButtonComponent,
+        CommonModule,
+        IconComponent,
+        SearchComponent,
+        MessageComponent,
+        HeaderComponent,
+        FooterComponent,
+        CommentsComponent,
+        ModalComponent
+    ],
     imports: [
         CommonModule,
         RouterModule,
