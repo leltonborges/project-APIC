@@ -1,27 +1,34 @@
 <main *ngIf="photo$ | async as p ; else notFoundPhoto"
       class="row">
   <section class="col-md-8">
-    <app-photo [urlImg]="p.url" [descriptionImg]="p.description"></app-photo>
+    <app-photo [descriptionImg]="p.description" [urlImg]="p.url"></app-photo>
   </section>
   <section class="col-md-4">
     <p class="text-center"><span>Likes: {{p.likes}}</span> <span class="ms-5">Comments: {{p.comments}}</span></p>
-    <div class="form-floating mb-1">
-      <input type="text" name="comment" id="comment"
-             class="form-control" placeholder="Comments">
-      <label for="comment">Comments</label>
-    </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button type="button" class="btn btn-primary btn-sm">Comments</button>
-    </div>
-    <article>
-      <app-comments *ngFor="let comment of comments$ | async as comments"
-                    [comment]="comment"></app-comments>
+    <form (submit)="addComment()" [formGroup]="formComment">
+      <div class="form-floating mb-1">
+        <input class="form-control" formControlName="commentText" id="comment" name="comment"
+               placeholder="Comments" type="text">
+        <label for="comment">Comments</label>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <span class="d-inline-block" data-bs-toggle="tooltip" tabindex="0" title="Add comment">
+          <button [disabled]="formComment.invalid" class="btn btn-primary btn-sm"
+                  type="submit">Comment</button>
+        </span>
+      </div>
+    </form>
+    <section>
+      <div *ngIf="(comments$ | async)?.length; else noComments ">
+        <app-comments *ngFor="let comment of comments$ | async"
+                      [comment]="comment"></app-comments>
+      </div>
       <ng-template #noComments>
         <div class="text-center">
           <p>No comments</p>
         </div>
       </ng-template>
-    </article>
+    </section>
   </section>
 </main>
 

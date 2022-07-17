@@ -10,6 +10,7 @@ import { PipeModule } from '../pipe/pipe.module';
 import { FooterComponent } from './footer/footer.component';
 import { CommentsComponent } from './comments/comments.component';
 import { DirectiveModule } from '../directive/directive.module';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DirectiveModule } from '../directive/directive.module';
     MessageComponent,
     HeaderComponent,
     FooterComponent,
-    CommentsComponent
+    CommentsComponent,
+    ModalComponent
   ],
   exports: [
     ButtonComponent,

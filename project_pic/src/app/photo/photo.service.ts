@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Photo, Photos } from './photo';
 import { environment } from '../../environments/environment';
@@ -44,5 +44,14 @@ export class PhotoService {
 
   findCommentsByIdPhoto(idPhoto: number): Observable<Comments>{
     return this.httpClient.get<Comments>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`);
+  }
+
+  addCommentsByIdPhoto(idPhoto: number, commentText: string): Observable<HttpResponse<any>>{
+    return this.httpClient.post<boolean>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`,
+      { commentText },
+      {
+        reportProgress: true,
+        observe: 'response'
+      });
   }
 }
