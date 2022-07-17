@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, pipe, switchMap, tap } from 'rxjs';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
 import { Comments } from '../../core/interface/photo/comment';
@@ -40,12 +40,12 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
         ]
     });
     this.idPhoto = this.activatedRoute.snapshot.params['idPhoto'];
-    this.photo$ = this.photoService.findPhotoById(this.idPhoto);
-    this.comments$ = this.getFindCommentsByIdPhoto();
+    this.getFindData();
   }
 
-  private getFindCommentsByIdPhoto(){
-    return this.photoService.findCommentsByIdPhoto(this.idPhoto);
+  private getFindData(): void{
+    this.comments$ = this.photoService.findCommentsByIdPhoto(this.idPhoto);
+    this.photo$ = this.photoService.findPhotoById(this.idPhoto);
   }
 
   get formComment(): FormGroup{
@@ -68,18 +68,20 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
   addComment(){
     const commentText = this.getInput('commentText')?.value;
 
-    this.photoService.addCommentsByIdPhoto(this.idPhoto, commentText)
+    this.photoService
+      .addCommentsByIdPhoto(this.idPhoto, commentText)
       .subscribe({
         next: () => {
-          this.comments$ = this.getFindCommentsByIdPhoto();
           this.formComment.setValue({ commentText: '' });
+          this.getFindData();
           this.modal.message = 'Comment successfully added';
           this.modal.open();
         },
-        error: () => {
+        error: (err) => {
           this.modal.message = 'Error adding comment';
           this.formComment.setValue({ commentText: '' });
           this.modal.open();
+          console.error(err);
         }
       });
   }

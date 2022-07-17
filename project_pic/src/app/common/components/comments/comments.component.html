@@ -1,4 +1,5 @@
-<main >
-  <p><strong>{{ comment.userName }}</strong><span class="break-word"> {{ comment.text }}</span></p>
+<main>
+  <p><strong><a [routerLink]="['/photo', comment.userName]">{{ comment.userName }}</a></strong><span
+    class="break-word"> {{ comment.text }}</span></p>
   <em class="date-comment">{{ comment.date | date: 'dd/MM/yyyy' }}</em>
 </main>
