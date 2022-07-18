@@ -16,6 +16,7 @@ import { ComponentsCommonModule } from '../common/components/components-common.m
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PhotoDetailsComponent } from './photo-details/photo-details.component';
+import { OwnerOnlyDirective } from './directive/owner-only.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PhotoDetailsComponent } from './photo-details/photo-details.component';
     PhotoAllComponent,
     FilterByDescriptionPipe,
     PhotoCardComponent,
-    PhotoDetailsComponent
+    PhotoDetailsComponent,
+    OwnerOnlyDirective
   ],
   exports: [
     PhotoListComponent,
