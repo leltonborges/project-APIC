@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule),
   },
   {
-   path: 'temp',
-   component: ModalComponent
-  },
-  {
     path: '**',
     loadChildren: () => import('./errors/errors.module').then(m => m.ErrorsModule)
   }

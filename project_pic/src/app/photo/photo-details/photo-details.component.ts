@@ -44,12 +44,6 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
     this.getFindData();
   }
 
-  demo(){
-    this.modal.icon = 'fa fa-image fa-5x';
-    this.modal.message = 'asdfsadfsdfasdf';
-    this.modal.open();
-  }
-
   private getFindData(): void{
     this.comments$ = this.photoService.findCommentsByIdPhoto(this.idPhoto);
     this.photo$ = this.photoService.findPhotoById(this.idPhoto);

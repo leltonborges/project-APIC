@@ -7,7 +7,8 @@
       <div class="d-flex justify-content-evenly mb-3">
         <app-icon class="fa fa-heart-o" [context]="p.likes"></app-icon>
         <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
-        <app-icon class="fa fa-trash-o" (click)="deletePhoto(p.id)"></app-icon>
+        <app-icon class="fa fa-trash-o" *ngIf="" appOwnerOnly [ownedPhoto]="p"
+                  (click)="deletePhoto(p.id)"></app-icon>
       </div>
     <div *ngIf="p.allowComments; else notAllowComments">
       <form (submit)="addComment()" [formGroup]="formComment">
