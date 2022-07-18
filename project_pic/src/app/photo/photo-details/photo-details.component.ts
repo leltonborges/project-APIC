@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Observable, pipe, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, delay, finalize, Observable, pipe, switchMap, tap } from 'rxjs';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
 import { Comments } from '../../core/interface/photo/comment';
@@ -27,7 +27,8 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
     private photoService: PhotoService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private formInputValidator: FormInputValidator
+    private formInputValidator: FormInputValidator,
+    private router: Router
   ){ }
 
   ngOnInit(): void{
@@ -41,6 +42,12 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
     });
     this.idPhoto = this.activatedRoute.snapshot.params['idPhoto'];
     this.getFindData();
+  }
+
+  demo(){
+    this.modal.icon = 'fa fa-image fa-5x';
+    this.modal.message = 'asdfsadfsdfasdf';
+    this.modal.open();
   }
 
   private getFindData(): void{
@@ -70,19 +77,43 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
 
     this.photoService
       .addCommentsByIdPhoto(this.idPhoto, commentText)
-      .subscribe({
-        next: () => {
+      .pipe(
+        tap(() => {
           this.formComment.setValue({ commentText: '' });
-          this.getFindData();
           this.modal.message = 'Comment successfully added';
+          this.modal.icon = 'fa fa-comments fa-5x';
           this.modal.open();
-        },
-        error: (err) => {
-          this.modal.message = 'Error adding comment';
+        }),
+        catchError((err, caught) => {
           this.formComment.setValue({ commentText: '' });
+          this.modal.message = 'Error adding comment';
+          this.modal.icon = 'fa fa-comments fa-5x';
           this.modal.open();
-          console.error(err);
-        }
-      });
+          return err;
+        }),
+        delay(5000),
+        finalize(() => {
+          this.getFindData();
+        })
+      ).subscribe();
+  }
+
+  deletePhoto(photoId: number){
+    this.photoService
+      .deletePhotoById(photoId)
+      .pipe(
+        tap(() => {
+          this.modal.message = 'Photo successfully deleted';
+          this.modal.open();
+        }),
+        catchError((err, caught) => {
+          this.modal.message = 'Error deleted photo';
+          this.modal.icon = '';
+          this.modal.open();
+          return err;
+        }),
+        delay(5000),
+        finalize(() => this.router.navigate([ '' ]))
+      ).subscribe();
   }
 }

@@ -3,7 +3,7 @@
     <div class="modal__close close-modal" title="close">
       <i class="fa fa-window-close" (click)="close()"></i>
     </div>
-    <i class="fa fa-comments fa-5x"></i>
+    <i [class]="icon"></i>
     <h4>{{ message }}</h4>
     <button class="modal__button close-modal btn btn-outline-danger" (click)="close()">Close</button>
   </div>

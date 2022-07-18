@@ -3,34 +3,48 @@
   <section class="col-md-8">
     <app-photo [descriptionImg]="p.description" [urlImg]="p.url"></app-photo>
   </section>
-  <section class="col-md-4">
-    <p class="text-center"><span>Likes: {{p.likes}}</span> <span class="ms-5">Comments: {{p.comments}}</span></p>
-    <form (submit)="addComment()" [formGroup]="formComment">
-      <div class="form-floating mb-1">
-        <input class="form-control" formControlName="commentText" id="comment" name="comment"
-               placeholder="Comments" type="text">
-        <label for="comment">Comments</label>
+  <section class="col-md-4" >
+      <div class="d-flex justify-content-evenly mb-3">
+        <app-icon class="fa fa-heart-o" [context]="p.likes"></app-icon>
+        <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
+        <app-icon class="fa fa-trash-o" (click)="deletePhoto(p.id)"></app-icon>
       </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div *ngIf="p.allowComments; else notAllowComments">
+      <form (submit)="addComment()" [formGroup]="formComment">
+        <div class="form-floating mb-1">
+          <input class="form-control" formControlName="commentText" id="comment" name="comment"
+                 placeholder="Comments" type="text">
+          <label for="comment">Comments</label>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <span class="d-inline-block" data-bs-toggle="tooltip" tabindex="0" title="Add comment">
           <button [disabled]="formComment.invalid" class="btn btn-primary btn-sm"
                   type="submit">Comment</button>
         </span>
-      </div>
-    </form>
-    <app-modal #modal msg="Comment successfully added" icon="fa fa-comments fa-5x"></app-modal>
-    <section>
-      <div *ngIf="(comments$ | async)?.length; else noComments ">
-        <app-comments *ngFor="let comment of comments$ | async"
-                      [comment]="comment"></app-comments>
-      </div>
-      <ng-template #noComments>
-        <div class="text-center">
-          <p>No comments</p>
         </div>
-      </ng-template>
-    </section>
+      </form>
+      <section>
+        <div *ngIf="(comments$ | async)?.length; else noComments ">
+          <app-comments *ngFor="let comment of comments$ | async"
+                        [comment]="comment"></app-comments>
+        </div>
+        <ng-template #noComments>
+          <div class="text-center">
+            <p>No comments</p>
+          </div>
+        </ng-template>
+      </section>
+    </div>
+    <app-modal #modal></app-modal>
   </section>
+  <ng-template #notAllowComments>
+    <div class="text-center ">
+      <p>Foto com comentário bloqueado</p>
+      <hr>
+      <h4>Does not allow comments</h4>
+    </div>
+  </ng-template>
+
 </main>
 
 <ng-template #notFoundPhoto>

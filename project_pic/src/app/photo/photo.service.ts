@@ -46,9 +46,13 @@ export class PhotoService {
     return this.httpClient.get<Comments>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`);
   }
 
-  addCommentsByIdPhoto(idPhoto: number, commentText: string){
-    return this.httpClient.post(
+  addCommentsByIdPhoto(idPhoto: number, commentText: string): Observable<boolean>{
+    return this.httpClient.post<boolean>(
       `${ environment.baseUrlAPI }/photos/${ idPhoto }/comments`,
       { commentText });
+  }
+
+  deletePhotoById(photoId: number): Observable<boolean>{
+    return this.httpClient.delete<boolean>(`${ environment.baseUrlAPI }/photos/${ photoId }`);
   }
 }

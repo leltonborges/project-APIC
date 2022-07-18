@@ -35,7 +35,7 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
           Validators.required,
           Validators.minLength(5)
         ] ],
-      comments: [ true ]
+      allowComments: [ true ]
     });
   }
 
@@ -68,7 +68,6 @@ export class PhotoFormComponent implements OnInit, FormInputControl {
 
   gravaArquivo(arquivo: any): void{
     const [ file ] = arquivo?.files;
-    console.log(file);
     this.fileImg = file;
     const reader = new FileReader();
     reader.onload = (i: any) => this.preview = i.target.result;
