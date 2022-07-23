@@ -1,5 +1,14 @@
-<section class="row" *ngIf="photos$ | async as photos">
-  <app-photo *ngFor="let p of photos" class="col-md-6 col-xl-4"
-             [urlImg]="p.url"
-             [descriptionImg]="p.description"></app-photo>
+<app-header></app-header>
+<aside class="text-center mt-3- mb-3">
+  <app-search (onFilter)="getFilter($event)" [value]="filter"></app-search>
+</aside>
+<section class="row">
+  <h3 *ngIf="!photos.length" class="text-center"> Sorry, no photos</h3>
+  <app-photo-card appDarkerOnHover brightness="80%"
+                  class="col-sm-6 col-md-3 col-xl-4"
+                  *ngFor="let p of photos | filterByDescription: filter"
+                  [photo]="p"></app-photo-card>
+  <footer>
+    <app-button (click)="loadPage()" [hasMore]="hasMore"></app-button>
+  </footer>
 </section>
