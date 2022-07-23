@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PhotoModule } from './photo/photo.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
-import { ErrorsModule } from './errors/errors.module';
+import { CommonCustomModule } from './common/common-custom.module';
+import { InterceptorModule } from './core/interceptor/interceptor.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PhotoService } from './photo/photo.service';
 
 @NgModule({
   declarations: [
@@ -13,12 +15,15 @@ import { ErrorsModule } from './errors/errors.module';
   ],
   imports: [
     BrowserModule,
-    PhotoModule,
     HttpClientModule,
     AppRoutingModule,
-    ErrorsModule
+    InterceptorModule,
+    CommonCustomModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    PhotoService
+  ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Photos } from '../photo';
-import { PhotoService } from '../photo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-photo-all',
@@ -10,23 +9,24 @@ import { PhotoService } from '../photo.service';
 })
 export class PhotoAllComponent implements OnInit {
 
-  private _photos$! : Observable<Photos>;
+  private _photos! : Photos;
 
   constructor(
-    private photoService : PhotoService,
-  ) {
-  }
+    private activatedRoute : ActivatedRoute
+  ) {}
 
   ngOnInit() : void {
-    this.photos$ = this.photoService.findPhotoAll();
+    //Uma forma de fazer
+    // this.photos = this.activatedRoute.snapshot.data['photosAllResolver']
+    this.activatedRoute.data.subscribe(() =>
+      this.photos = this.activatedRoute.snapshot.data['photosAllResolver']);
   }
 
-  get photos$() : Observable<Photos> {
-    return this._photos$;
+  get photos() : Photos {
+    return this._photos;
   }
 
-  set photos$(value : Observable<Photos>) {
-    this._photos$ = value;
+  set photos(value : Photos) {
+    this._photos = value;
   }
-
 }
