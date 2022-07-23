@@ -98,11 +98,12 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
       .pipe(
         tap(() => {
           this.modal.message = 'Photo successfully deleted';
+          this.modal.icon= 'fa fa-image fa-5x';
           this.modal.open();
         }),
         catchError((err, caught) => {
           this.modal.message = 'Error deleted photo';
-          this.modal.icon = '';
+          this.modal.icon= 'fa fa-image fa-5x';
           this.modal.open();
           return err;
         }),
@@ -111,7 +112,18 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
       ).subscribe();
   }
 
-  demo(){
-    console.log("okkasdfsdfsdf");
+  likePhoto(idPhoto: number){
+    this.photoService.likePhotoById(idPhoto)
+      .subscribe({
+        next: like => {
+          if(like) this.getFindData();
+        },
+        error: err => {
+          this.modal.message = 'Error like this photo';
+          this.modal.icon= 'fa fa-image fa-5x';
+          this.modal.open();
+        }
+      });
   }
+
 }
