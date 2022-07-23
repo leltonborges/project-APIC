@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { catchError, debounceTime, delay, finalize, Observable, pipe, switchMap, tap } from 'rxjs';
+import { catchError, delay, finalize, Observable, tap } from 'rxjs';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
 import { Comments } from '../../core/interface/photo/comment';
@@ -109,5 +109,9 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
         delay(5000),
         finalize(() => this.router.navigate([ '' ]))
       ).subscribe();
+  }
+
+  demo(){
+    console.log("okkasdfsdfsdf");
   }
 }

@@ -5,13 +5,14 @@
   </section>
   <section class="col-md-4" >
       <div class="d-flex justify-content-evenly mb-3">
-        <app-icon class="fa fa-heart-o" [context]="p.likes"></app-icon>
+        <app-icon class="fa fa-heart-o" appShowLogged (click)="demo()"
+                  [context]="p.likes"></app-icon>
         <app-icon class="fa fa-comment-o" [context]="p.comments"></app-icon>
-        <app-icon class="fa fa-trash-o" *ngIf="" appOwnerOnly [ownedPhoto]="p"
+        <app-icon class="fa fa-trash-o" appOwnerOnly [ownedPhoto]="p"
                   (click)="deletePhoto(p.id)"></app-icon>
       </div>
     <div *ngIf="p.allowComments; else notAllowComments">
-      <form (submit)="addComment()" [formGroup]="formComment">
+      <form (submit)="addComment()" [formGroup]="formComment" appShowLogged>
         <div class="form-floating mb-1">
           <input class="form-control" formControlName="commentText" id="comment" name="comment"
                  placeholder="Comments" type="text">

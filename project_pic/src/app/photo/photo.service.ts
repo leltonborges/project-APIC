@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Photo, Photos } from './photo';
 import { environment } from '../../environments/environment';
 import { Comments } from '../core/interface/photo/comment';
@@ -54,5 +54,15 @@ export class PhotoService {
 
   deletePhotoById(photoId: number): Observable<boolean>{
     return this.httpClient.delete<boolean>(`${ environment.baseUrlAPI }/photos/${ photoId }`);
+  }
+
+  likePhotoById(idPhoto: number): Observable<boolean>{
+    return this.httpClient.post<boolean>(`${ environment.baseUrlAPI }/photos/${ idPhoto }/like`,
+      {},
+      { observe: 'response' })
+      .pipe(
+        map(resp => true),
+        catchError(err => err.status == '304' ? of(false) : throwError(err))
+      );
   }
 }

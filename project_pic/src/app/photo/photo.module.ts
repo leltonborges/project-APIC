@@ -17,6 +17,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 import { OwnerOnlyDirective } from './directive/owner-only/owner-only.directive';
+import { ShowLoggedDirective } from './directive/show-logged/show-logged.directive';
+import { PhotoDirectiveModule } from './directive/photo-directive.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,7 @@ import { OwnerOnlyDirective } from './directive/owner-only/owner-only.directive'
     PhotoAllComponent,
     FilterByDescriptionPipe,
     PhotoCardComponent,
-    PhotoDetailsComponent,
-    OwnerOnlyDirective
+    PhotoDetailsComponent
   ],
   exports: [
     PhotoListComponent,
@@ -40,7 +41,8 @@ import { OwnerOnlyDirective } from './directive/owner-only/owner-only.directive'
     ComponentsCommonModule,
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    PhotoDirectiveModule
   ],
   providers: [
     PhotoService,
