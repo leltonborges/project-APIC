@@ -41,10 +41,19 @@
       </div>
 
     </section>
-    <section class="d-grid gap-2">
-      <button type="submit" class="btn btn-outline-primary" [disabled]="photoForm.invalid">Upload</button>
 
-      <button type="button" class="btn btn-outline-secondary">Cancel</button>
+    <section class="d-grid gap-2" *ngIf="!percentDone; else progressBar">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="photoForm.invalid">Upload</button>
+      <button type="button" [routerLink]="['']" class="btn btn-outline-secondary">Cancel</button>
     </section>
+    <ng-template #progressBar>
+      <div class="progress my-3">
+        <div class="progress-bar" role="progressbar" aria-label="Progress photo upload"
+             #progress [style.width]="percentDone+'%'"
+             aria-valuemin="0" aria-valuemax="100">{{percentDone}}%
+        </div>
+      </div>
+    </ng-template>
   </form>
+  <app-modal #modal></app-modal>
 </section>

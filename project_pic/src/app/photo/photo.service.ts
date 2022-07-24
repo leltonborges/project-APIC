@@ -35,7 +35,12 @@ export class PhotoService {
 
 
     return this.httpClient.post(
-      `${ environment.baseUrlAPI }/photos/upload`, formData);
+      `${ environment.baseUrlAPI }/photos/upload`,
+      formData,
+      {
+        observe: 'events',
+        reportProgress: true
+      });
   }
 
   findPhotoById(idPhoto: number): Observable<Photo> | null{
