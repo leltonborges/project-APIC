@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CommentsComponent } from './comments/comments.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { ModalComponent } from './modal/modal.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalComponent } from './modal/modal.component';
     HeaderComponent,
     FooterComponent,
     CommentsComponent,
-    ModalComponent
+    ModalComponent,
+    LoadingComponent
   ],
     exports: [
         ButtonComponent,
