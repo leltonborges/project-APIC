@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhotoFormComponent } from './photo/photo-form/photo-form.component';
 import { RequireAutenticationGuard } from './core/guard/auth/require-autentication.guard';
-import { ModalComponent } from './common/components/modal/modal.component';
 
 const routes: Routes = [
   {
@@ -12,20 +11,32 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    data: {
+      title: 'Home API'
+    }
   },
   {
     path: 'add',
     component: PhotoFormComponent,
-    canActivate: [ RequireAutenticationGuard ]
+    canActivate: [ RequireAutenticationGuard ],
+    data: {
+      title: 'Update photo API'
+    }
   },
   {
     path: 'photo',
     loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule),
+    data: {
+      title: 'Photos API'
+    }
   },
   {
     path: '**',
-    loadChildren: () => import('./errors/errors.module').then(m => m.ErrorsModule)
+    loadChildren: () => import('./errors/errors.module').then(m => m.ErrorsModule),
+    data: {
+      title: 'Not Found API'
+    }
   }
 ];
 
