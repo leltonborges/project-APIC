@@ -17,7 +17,7 @@ export class LoadingService {
                .pipe(startWith(LoadingType.STOPPED));
   }
 
-  star(): void{
+  start(): void{
     this._loading$.next(LoadingType.LOADING);
   }
 

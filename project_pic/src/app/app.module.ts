@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 import { CommonCustomModule } from './common/common-custom.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { PhotoService } from './photo/photo.service';
+import { InterceptorModule } from './core/interceptor/interceptor.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PhotoService } from './photo/photo.service';
     HttpClientModule,
     AppRoutingModule,
     CommonCustomModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InterceptorModule
   ],
   providers: [
     PhotoService
