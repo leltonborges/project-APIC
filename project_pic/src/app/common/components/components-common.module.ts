@@ -12,9 +12,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { DirectiveModule } from '../directive/directive.module';
 import { ModalComponent } from './modal/modal.component';
 import { LoadingComponent } from './loading/loading.component';
-import { NgProgressModule } from 'ngx-progressbar';
-import { NgProgressHttpModule } from 'ngx-progressbar/http';
-import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     CommentsComponent,
     ModalComponent,
-    LoadingComponent
+    LoadingComponent,
+    MenuComponent
   ],
   exports: [
     ButtonComponent,
@@ -37,13 +36,15 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     CommentsComponent,
-    ModalComponent
+    ModalComponent,
+    MenuComponent,
+    DirectiveModule
   ],
   imports: [
     CommonModule,
     RouterModule,
     PipeModule,
-    DirectiveModule,
+    DirectiveModule
   ]
 })
 export class ComponentsCommonModule {

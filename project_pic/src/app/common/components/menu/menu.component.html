@@ -1,0 +1,7 @@
+<section *ngIf="isShow | isLogged">
+  <div class="menu-bar" [ngClass]="{'active-menu': isShow}">
+    <i class="fa fa-window-close" (click)="toggle()" (keyup.space)="toggle()" tabindex="0"></i>
+    <ng-content></ng-content>
+  </div>
+  <div [ngClass]="{'overlay': isShow}" (click)="toggle()"></div>
+</section>

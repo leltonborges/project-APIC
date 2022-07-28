@@ -1,7 +1,21 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white me-4 ms-4">
-    <a class="navbar-brand">Project APIC</a>
-    <div *ngIf="(user$ | hasUser) as name; else toLogin">
+    <a class="navbar-brand">
+      <i class="fa fa-bars me-2" tabindex="0" (keyup.space)="menu.toggle()"
+         (click)="menu.toggle()"></i>
+      Project APIC
+    </a>
+    <app-menu #menu>
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [routerLink]="['']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+    </app-menu>
+    <div *ngIf="(user$ | hasUser ) as name; else toLogin">
       <i class="fa fa-user-circle"></i>
       <a class="ms-2 me-2">{{name}}</a>
       <a (click)="logout()">Logout</a>
