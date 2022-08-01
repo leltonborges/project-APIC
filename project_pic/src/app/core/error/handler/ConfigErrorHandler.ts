@@ -22,7 +22,7 @@ export class ConfigErrorHandler implements ErrorHandler {
     const url = location instanceof PathLocationStrategy ? location.path() : '';
     const message = error.message ? error.message : error.toString();
 
-    if(error.status != '404') router.navigate([ 'error', 'error' ])
+    if(error.status != '404') router.navigate([ 'error', 'error' ]);
 
     StackTrace
       .fromError(error)
@@ -30,11 +30,13 @@ export class ConfigErrorHandler implements ErrorHandler {
         const stackAsString = stack
           .map(s => s.toString())
           .join('\n');
-
         serverLogService.sendLog({ message, url, userName: userService.getUserName(), stack: stackAsString })
                         .subscribe({
                           next: value => console.log(`Successuful ${ value }`),
-                          error: error => console.error(error)
+                          error: error => {
+                            console.error('Erro ao enviar os logs');
+                            console.error(error);
+                          }
                         });
       });
     throw error;
