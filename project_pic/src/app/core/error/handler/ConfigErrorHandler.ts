@@ -23,7 +23,6 @@ export class ConfigErrorHandler implements ErrorHandler {
     const message = error.message ? error.message : error.toString();
 
     if(error.status != '404') router.navigate([ 'error', 'error' ]);
-
     StackTrace
       .fromError(error)
       .then(stack => {
