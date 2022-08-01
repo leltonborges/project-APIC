@@ -32,11 +32,16 @@ const routes: Routes = [
     }
   },
   {
-    path: '**',
+    path: 'error',
     loadChildren: () => import('./errors/errors.module').then(m => m.ErrorsModule),
     data: {
       title: 'Not Found API'
     }
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'error'
   }
 ];
 

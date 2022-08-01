@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CommonCustomModule } from './common/common-custom.module';
 import { PhotoService } from './photo/photo.service';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
+import { ConfigErrorHandler } from './core/error/handler/ConfigErrorHandler';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,11 @@ import { InterceptorModule } from './core/interceptor/interceptor.module';
     InterceptorModule
   ],
   providers: [
-    PhotoService
+    PhotoService,
+    {
+      provide: ErrorHandler,
+      useClass: ConfigErrorHandler
+    }
   ],
   bootstrap: [ AppComponent ]
 })
