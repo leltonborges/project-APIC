@@ -1,12 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-api/node_modules/
 */node_modules/
+*/yarn.lock
 project_pic/.angular/
-project_pic/node_modules/
 project_pic/.vscode
-project_pic/yarn.lock
-api/yarn.lock
 
 # Compiled output
 /dist
@@ -36,10 +33,8 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
-# Miscellaneous
 /.angular/cache
-.sass-cache/
-/connect.lock
+*nnect.lock
 /coverage
 /libpeerconnection.log
 testem.log
