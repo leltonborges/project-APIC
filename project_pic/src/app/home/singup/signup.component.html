@@ -44,6 +44,8 @@
                  msg="Password is required"></app-message>
     <app-message *ngIf="isError('password', 'minlength') && isTouched('password')"
                  msg="Size min 8"></app-message>
+    <app-message *ngIf="errorForm('userEqualsPassword') && isTouched('password')"
+                 msg="Username and password cannot be the same"></app-message>
   </div>
   <div class="d-grid gap-2 mx-auto mt-5">
     <button [disabled]="formSingup.invalid || formSingup.pending"

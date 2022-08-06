@@ -7,6 +7,7 @@ import { UserNotTakenValidatorService } from '../user-not-taken.validator.servic
 import { Signup } from '../../core/interface/user/signup';
 import { HomeService } from '../home.service';
 import { Router } from '@angular/router';
+import { usernamePasswordeValidator } from '../../common/validator/form/signup/username-passworde.validator';
 
 @Component({
   selector: 'app-singup',
@@ -15,17 +16,17 @@ import { Router } from '@angular/router';
   providers: [ UserNotTakenValidatorService ]
 })
 export class SignupComponent implements OnInit, FormInputControl {
-  private _formSingup! : FormGroup;
+  private _formSingup!: FormGroup;
 
   constructor(
-    private formBuilder : FormBuilder,
-    private formInputValidator : FormInputValidator,
-    private userNotTakenValidator : UserNotTakenValidatorService,
-    private homeService : HomeService,
-    private router : Router
-  ) { }
+    private formBuilder: FormBuilder,
+    private formInputValidator: FormInputValidator,
+    private userNotTakenValidator: UserNotTakenValidatorService,
+    private homeService: HomeService,
+    private router: Router
+  ){ }
 
-  ngOnInit() : void {
+  ngOnInit(): void{
     this._formSingup = this.formBuilder.group({
       fullName: [ '',
         [
@@ -51,32 +52,40 @@ export class SignupComponent implements OnInit, FormInputControl {
           Validators.required,
           Validators.minLength(8)
         ] ]
+    }, {
+      validators: [
+        usernamePasswordeValidator
+      ]
     });
   }
 
-  singUp() {
+  singUp(){
     const newUser = this.formSingup.getRawValue() as Signup;
     this.homeService.signUp(newUser)
-      .subscribe({
-        next: () => this.router.navigate([ '' ]),
-        error: console.log
-      });
+        .subscribe({
+          next: () => this.router.navigate([ '' ]),
+          error: console.log
+        });
   }
 
-  get formSingup() : FormGroup {
+  get formSingup(): FormGroup{
     return this._formSingup;
   }
 
-  getInput(nameInput : string) : AbstractControl | null {
+  getInput(nameInput: string): AbstractControl | null{
     return this.formInputValidator.getInput(this.formSingup, nameInput);
   }
 
-  isError(nameInput : string, nameError : string) : ValidationErrors | undefined | null {
+  isError(nameInput: string, nameError: string): ValidationErrors | undefined | null{
     return this.formInputValidator.isError(this._formSingup, nameInput, nameError);
 
   }
 
-  isTouched(nameInput : string) : boolean | undefined | null {
+  isTouched(nameInput: string): boolean | undefined | null{
     return this.formInputValidator.isTouched(this._formSingup, nameInput);
+  }
+
+  errorForm(error: string){
+    return this.formSingup.errors?.[error];
   }
 }
