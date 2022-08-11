@@ -9,15 +9,20 @@ import { UserService } from '../../service/user/user.service';
 export class UserGuard implements CanActivate {
 
   constructor(
-    private userService : UserService,
-    private router : Router
-  ) {}
+    private userService: UserService,
+    private router: Router
+  ){}
 
   canActivate(
-    route : ActivatedRouteSnapshot,
-    state : RouterStateSnapshot) : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
     if(!this.userService.isLogged()) {
-      this.router.navigate([ '' ]);
+      this.router.navigate([ '' ],
+        {
+          queryParams: {
+            fromUrl: state.url
+          }
+        });
       return false;
     }
     return true;
