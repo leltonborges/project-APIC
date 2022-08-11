@@ -70,60 +70,60 @@ export class PhotoDetailsComponent implements OnInit, FormInputControl {
     const commentText = this.getInput('commentText')?.value;
 
     this.photoService
-      .addCommentsByIdPhoto(this.idPhoto, commentText)
-      .pipe(
-        tap(() => {
-          this.formComment.setValue({ commentText: '' });
-          this.modal.message = 'Comment successfully added';
-          this.modal.icon = 'fa fa-comments fa-5x';
-          this.modal.open();
-        }),
-        catchError((err, caught) => {
-          this.formComment.setValue({ commentText: '' });
-          this.modal.message = 'Error adding comment';
-          this.modal.icon = 'fa fa-comments fa-5x';
-          this.modal.open();
-          return err;
-        }),
-        delay(5000),
-        finalize(() => {
-          this.getFindData();
-        })
-      ).subscribe();
+        .addCommentsByIdPhoto(this.idPhoto, commentText)
+        .pipe(
+          tap(() => {
+            this.formComment.setValue({ commentText: '' });
+            this.modal.message = 'Comment successfully added';
+            this.modal.icon = 'fa fa-comments fa-5x';
+            this.modal.open();
+          }),
+          catchError((err, caught) => {
+            this.formComment.setValue({ commentText: '' });
+            this.modal.message = 'Error adding comment';
+            this.modal.icon = 'fa fa-comments fa-5x';
+            this.modal.open();
+            return err;
+          }),
+          delay(5000),
+          finalize(() => {
+            this.getFindData();
+          })
+        ).subscribe();
   }
 
   deletePhoto(photoId: number){
     this.photoService
-      .deletePhotoById(photoId)
-      .pipe(
-        tap(() => {
-          this.modal.message = 'Photo successfully deleted';
-          this.modal.icon= 'fa fa-image fa-5x';
-          this.modal.open();
-        }),
-        catchError((err, caught) => {
-          this.modal.message = 'Error deleted photo';
-          this.modal.icon= 'fa fa-image fa-5x';
-          this.modal.open();
-          return err;
-        }),
-        delay(5000),
-        finalize(() => this.router.navigate([ '' ]))
-      ).subscribe();
+        .deletePhotoById(photoId)
+        .pipe(
+          tap(() => {
+            this.modal.message = 'Photo successfully deleted';
+            this.modal.icon = 'fa fa-image fa-5x';
+            this.modal.open();
+          }),
+          catchError((err, caught) => {
+            this.modal.message = 'Error deleted photo';
+            this.modal.icon = 'fa fa-image fa-5x';
+            this.modal.open();
+            return err;
+          }),
+          delay(5000),
+          finalize(() => this.router.navigate([ '' ], { replaceUrl: true }))
+        ).subscribe();
   }
 
   likePhoto(idPhoto: number){
     this.photoService.likePhotoById(idPhoto)
-      .subscribe({
-        next: like => {
-          if(like) this.getFindData();
-        },
-        error: err => {
-          this.modal.message = 'Error like this photo';
-          this.modal.icon= 'fa fa-image fa-5x';
-          this.modal.open();
-        }
-      });
+        .subscribe({
+          next: like => {
+            if(like) this.getFindData();
+          },
+          error: err => {
+            this.modal.message = 'Error like this photo';
+            this.modal.icon = 'fa fa-image fa-5x';
+            this.modal.open();
+          }
+        });
   }
 
 }
